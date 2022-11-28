@@ -18,7 +18,6 @@ class CreateItensTable extends Migration
             $table->string('name_item')->nullable();
             $table->text('description')->nullable();
             $table->integer('status')->nullable();
-            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

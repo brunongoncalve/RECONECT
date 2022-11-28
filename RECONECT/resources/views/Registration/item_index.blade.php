@@ -47,16 +47,6 @@
 </div>
 
 <div class="form-group">
-    <label class="font-normal">FOTO:</label>
-        <div class="input-group">
-            <input type="file" 
-                  class="form-control"
-                  id="photo"
-                  name="photo">
-        </div>
-</div>
-
-<div class="form-group">
     <label class="font-normal">QUANTIDADE DE ITENS:</label>
         <div class="input-group">
             <input type="number" 
