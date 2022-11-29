@@ -48,13 +48,13 @@
                        name="description">
             </div>
                 <button type="submit" 
-                        class="btn btn-danger"
+                        class="btn btn-primary"
                         value="btn_exit_item"
                         href="{{route('movement_resources')}}">Confrimar Liberação
                 </button>
             <div class="col-md-1">
                 <a href="{{ route('movement_resources') }}" 
-                   class="btn btn-primary">Limpar
+                   class="btn btn-success">Limpar
                 </a>
              </div>
         </div>
@@ -102,6 +102,14 @@
                 aria-label="Platform(s): activate to sort column ascending"
                 style="width: 457.078px;">DESCRIÇÃO
             </th>
+             <th class="sorting" 
+                tabindex="0" 
+                aria-controls="DataTables_Table_0" 
+                rowspan="1" 
+                colspan="1" 
+                aria-label="Platform(s): activate to sort column ascending"
+                style="width: 457.078px;">GRUPO
+            </th>
         </tr>
     </thead>
     
@@ -110,6 +118,7 @@
             <tr class="gradeA odd" role="row" onclick="selectItem({{ $resource->id }})">
                 <td align='center'>{{ $resource->name_item }}</td>
                 <td align='center'>{{ $resource->description }}</td>
+                <td align='center'>{{ $resource->group->name_group }}</td>
             </tr>
         @endforeach    
     </tbody>
@@ -136,7 +145,7 @@
       method="POST">
     @csrf 
                                 <input type="hidden" placeholder="" class="form-control" id="id_out" name="id_out">
-                                 <input type="hidden" placeholder="" class="form-control" id="id_item_out" name="id_item_out">
+                                <input type="hidden" placeholder="" class="form-control" id="id_item_out" name="id_item_out">
 
 <div class="form-group row">
     <div class="col-sm-12">
@@ -158,13 +167,13 @@
                        name="description_out">
             </div>
                 <button type="submit" 
-                        class="btn btn-danger"
+                        class="btn btn-primary"
                         value="btn_exit_item_out"
                         href="{{route('movement_resources')}}">Confrimar Liberação
                 </button>
             <div class="col-md-1">
                 <a href="{{ route('movement_resources') }}" 
-                   class="btn btn-primary">Limpar
+                   class="btn btn-success">Limpar
                 </a>
              </div>
         </div>

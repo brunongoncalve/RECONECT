@@ -1,17 +1,17 @@
 @extends('Template.principal')
 
-@section('title', 'Reconect | Cadastro item')
+@section('title', 'Reconect | Cadastro Grupo')
 
 @section('content')
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Cadastro de Itens</h2>
+        <h2>Cadastro de Grupos</h2>
     </div>
 </div><br>
 
 <form class="m-t" 
-      action="{{ route('registration_item') }}"
+      action="{{ route('registration_group') }}"
       enctype="multipart/form-data"
       method="POST">
     @csrf
@@ -27,27 +27,12 @@
         <div class="ibox-content">
 
 <div class="form-group">
-    <label class="font-normal">GRUPO DO ITEM:</label>
-        <div class="input-group">
-            <select class="form-control m-b" 
-                    name="account" 
-                    id="group" 
-                    name="group">
-                        <option></option>
-                            @foreach($groups as $group) 
-                                <option value="{{ $group->id }}">{{ $group->id }} - {{ $group->description }}</option>
-                            @endforeach
-            </select>
-        </div>
-</div>
-
-<div class="form-group">
     <label class="font-normal">NOME:</label>
         <div class="input-group">
             <input type="text" 
                   class="form-control"
-                  id="name_item"
-                  name="name_item">
+                  id="name_group"
+                  name="name_group">
         </div>
 </div>
 
@@ -58,16 +43,6 @@
                   class="form-control"
                   id="description"
                   name="description">
-        </div>
-</div>
-
-<div class="form-group">
-    <label class="font-normal">QUANTIDADE DE ITENS:</label>
-        <div class="input-group">
-            <input type="number" 
-                  class="form-control"
-                  id="quantity"
-                  name="quantity">
         </div>
 </div>
 

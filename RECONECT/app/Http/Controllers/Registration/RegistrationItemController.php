@@ -8,12 +8,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Registration\Item;
+use App\Models\Registration\Group;
 
 class RegistrationItemController extends Controller
 {
     public function index()
     {
-        return view('Registration.item_index');
+        $groups = new Group;
+        $groups = Group::all();
+        return view('Registration.item_index')
+               ->with('groups', $groups);
     }
 
     public function store(Request $request)
@@ -25,6 +29,7 @@ class RegistrationItemController extends Controller
                 $item = new Item;
                 $item->name_item = $request->name_item;
                 $item->description = $request->description;
+                $item->groups_id = $request->account;
                 $item->status = 0;
                 $item->save();
                 

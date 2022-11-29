@@ -56,9 +56,10 @@
                     <li class="active">
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">RECURSOS</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                            <li><a href="{{ route('registration_group') }}">Cadastro de grupo</a></li>
                             <li><a href="{{ route('registration_item') }}">Cadastro do item</a></li>
                             <li><a href="{{ route('movement_resources') }}">Movimentação</a></li>
-                             <li><a href="{{ route('resources_report') }}">Relatorio</a></li>
+                            <li><a href="{{ route('resources_report') }}">Relatorio</a></li>
                         </ul>
                     </li>
         </nav>

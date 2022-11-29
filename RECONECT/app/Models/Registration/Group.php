@@ -11,6 +11,6 @@ class Group extends Model
 
     public function itens()
     {
-        return $this->hasMany(App\Models\Registration\Item::class, 'id_item', 'id_group');
+        return $this->hasMany(App\Models\Registration\Item::class, 'id', 'id');
     }
 }

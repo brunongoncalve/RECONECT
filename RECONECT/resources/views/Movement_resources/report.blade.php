@@ -28,7 +28,7 @@
                 rowspan="1" 
                 colspan="1" 
                 aria-label="Browser: activate to sort column ascending" 
-                style="width: 505.562px;">NOME
+                style="width: 505.562px;">ITEM
             </th>
             <th class="sorting" 
                 tabindex="0" 
@@ -78,9 +78,9 @@
             <tr class="gradeA odd" role="row">
                 <td align='center'>{{ $report->itemOut->name_item }}</td>
                 <td align='center'>{{ $report->itemOut->description }}</td>
-                <td align='center'>{{ $report->dt_in }}</td>
+                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_in)) }}</td>
                 <td align='center'>{{ $report->responsible_in }}</td>
-                <td align='center'>{{ $report->dt_out }}</td>
+                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_out)) }}</td>
                 <td align='center'>{{ $report->responsible_out }}</td>
             </tr>
         @endforeach    

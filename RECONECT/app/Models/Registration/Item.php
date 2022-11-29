@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $table = 'itens';
+
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Registration\Group', 'groups_id', 'id');
+    }
 }
