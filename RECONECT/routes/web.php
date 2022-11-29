@@ -6,6 +6,7 @@ use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\Integra\IntegraController;
 use App\Http\Controllers\Registration\RegistrationItemController;
 use App\Http\Controllers\Movement_resources\ResourceController;
+use App\Http\Controllers\Registration\RegistrationGroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::get('/select_item', [ResourceController::class, 'selectItem'])->name('sel
 Route::get('/select_item_out', [ResourceController::class, 'selectItemOut'])->name('select_item_out')->middleware(App\Http\Middleware\Seguranca::class);
 Route::post('/movement_resources', [ResourceController::class, 'exitItem'])->name('movement_resources')->middleware(App\Http\Middleware\Seguranca::class);
 Route::get('/resources_report', [ResourceController::class, 'resourcesReport'])->name('resources_report')->middleware(App\Http\Middleware\Seguranca::class);
+
+Route::get('/registration_group', [RegistrationGroupController::class, 'index'])->name('registration_group')->middleware(App\Http\Middleware\Seguranca::class);
+Route::post('/registration_group', [RegistrationGroupController::class, 'store'])->name('registration_group')->middleware(App\Http\Middleware\Seguranca::class);

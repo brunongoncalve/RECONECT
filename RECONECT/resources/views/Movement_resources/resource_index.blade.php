@@ -48,13 +48,13 @@
                        name="description">
             </div>
                 <button type="submit" 
-                        class="btn btn-danger"
+                        class="btn btn-primary"
                         value="btn_exit_item"
                         href="{{route('movement_resources')}}">Confrimar Liberação
                 </button>
             <div class="col-md-1">
                 <a href="{{ route('movement_resources') }}" 
-                   class="btn btn-primary">Limpar
+                   class="btn btn-success">Limpar
                 </a>
              </div>
         </div>
@@ -86,15 +86,6 @@
 
     <thead>
         <tr role="row">
-            <th class="sorting_asc" 
-                tabindex="0" 
-                aria-controls="DataTables_Table_0" 
-                rowspan="1" 
-                colspan="1" 
-                aria-sort="ascending" 
-                aria-label="Rendering engine: activate to sort column descending"
-                style="width: 413.438px;">ITEM
-            </th>
             <th class="sorting" 
                 tabindex="0" 
                 aria-controls="DataTables_Table_0" 
@@ -111,15 +102,23 @@
                 aria-label="Platform(s): activate to sort column ascending"
                 style="width: 457.078px;">DESCRIÇÃO
             </th>
+             <th class="sorting" 
+                tabindex="0" 
+                aria-controls="DataTables_Table_0" 
+                rowspan="1" 
+                colspan="1" 
+                aria-label="Platform(s): activate to sort column ascending"
+                style="width: 457.078px;">GRUPO
+            </th>
         </tr>
     </thead>
     
     <tbody>
         @foreach($resources as $resource)
             <tr class="gradeA odd" role="row" onclick="selectItem({{ $resource->id }})">
-                <td align='left'><img src="/img/itens/{{ $resource->photo }}" class="img-circle m-b"width="50px"></td>
-                <td align='left'>{{ $resource->name_item }}</td>
-                <td align='left'>{{$resource->description}}</td>
+                <td align='center'>{{ $resource->name_item }}</td>
+                <td align='center'>{{ $resource->description }}</td>
+                <td align='center'>{{ $resource->group->name_group }}</td>
             </tr>
         @endforeach    
     </tbody>
@@ -146,7 +145,7 @@
       method="POST">
     @csrf 
                                 <input type="hidden" placeholder="" class="form-control" id="id_out" name="id_out">
-                                 <input type="hidden" placeholder="" class="form-control" id="id_item_out" name="id_item_out">
+                                <input type="hidden" placeholder="" class="form-control" id="id_item_out" name="id_item_out">
 
 <div class="form-group row">
     <div class="col-sm-12">
@@ -168,13 +167,13 @@
                        name="description_out">
             </div>
                 <button type="submit" 
-                        class="btn btn-danger"
+                        class="btn btn-primary"
                         value="btn_exit_item_out"
                         href="{{route('movement_resources')}}">Confrimar Liberação
                 </button>
             <div class="col-md-1">
                 <a href="{{ route('movement_resources') }}" 
-                   class="btn btn-primary">Limpar
+                   class="btn btn-success">Limpar
                 </a>
              </div>
         </div>
@@ -206,24 +205,6 @@
 
     <thead>
         <tr role="row">
-            <th class="sorting_asc" 
-                tabindex="0" 
-                aria-controls="DataTables_Table_0" 
-                rowspan="1" 
-                colspan="1" 
-                aria-sort="ascending" 
-                aria-label="Rendering engine: activate to sort column descending"
-                style="width: 413.438px;">#
-            </th>
-            <th class="sorting_asc" 
-                tabindex="0" 
-                aria-controls="DataTables_Table_0" 
-                rowspan="1" 
-                colspan="1" 
-                aria-sort="ascending" 
-                aria-label="Rendering engine: activate to sort column descending"
-                style="width: 413.438px;">ITEM
-            </th>
             <th class="sorting" 
                 tabindex="0" 
                 aria-controls="DataTables_Table_0" 
@@ -262,12 +243,10 @@
     <tbody>
         @foreach($resourcesOut as $out)
             <tr class="gradeA odd" role="row" onclick="selectItemOut({{ $out->id }})">
-                <td align='left'>{{ $out->itemOut->id }}</td>
-                <td align='left'><img src="/img/itens/{{ $out->itemOut->photo }}" class="img-circle m-b"width="50px"></td>
-                <td align='left'>{{ $out->itemOut->name_item }}</td>
-                <td align='left'>{{ $out->itemOut->description }}</td>
-                <td align='left'>{{ date('d/m/y H:i:s', strtotime($out->dt_in)) }}</td>
-                <td align='left'>{{ $out->responsible_in }}</td>
+                <td align='center'>{{ $out->itemOut->name_item }}</td>
+                <td align='center'>{{ $out->itemOut->description }}</td>
+                <td align='center'>{{ date('d/m/y H:i:s', strtotime($out->dt_in)) }}</td>
+                <td align='center'>{{ $out->responsible_in }}</td>
             </tr>
         @endforeach    
     </tbody>
@@ -295,7 +274,7 @@ $(document).ready(function() {
     "bAutoWidth": true,
     "bDeferRender": true,
     "bLengthChange": false,
-    "pageLength": 5,
+    "pageLength": 4,
     "order": [0, 'desc'],
 
         dom: "Bfrtip",
@@ -312,7 +291,7 @@ $(document).ready(function() {
     "bAutoWidth": true,
     "bDeferRender": true,
     "bLengthChange": false,
-    "pageLength": 5,
+    "pageLength": 4,
     "order": [0, 'desc'],
 
         dom: "Bfrtip",

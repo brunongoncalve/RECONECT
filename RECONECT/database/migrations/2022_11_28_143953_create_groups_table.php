@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItensTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateItensTable extends Migration
      */
     public function up()
     {
-        Schema::create('itens', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('groups_id')->constrained();
-            $table->string('name_item')->nullable();
+            $table->string('name_group')->nullable();
             $table->text('description')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
@@ -30,6 +29,6 @@ class CreateItensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itens');
+        Schema::dropIfExists('groups');
     }
 }

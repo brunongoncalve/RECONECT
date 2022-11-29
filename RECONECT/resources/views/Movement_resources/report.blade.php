@@ -22,22 +22,13 @@
 
     <thead>
         <tr role="row">
-            <th class="sorting_asc" 
-                tabindex="0" 
-                aria-controls="DataTables_Table_0" 
-                rowspan="1" 
-                colspan="1" 
-                aria-sort="ascending" 
-                aria-label="Rendering engine: activate to sort column descending"
-                style="width: 413.438px;">ITEM
-            </th>
             <th class="sorting" 
                 tabindex="0" 
                 aria-controls="DataTables_Table_0" 
                 rowspan="1" 
                 colspan="1" 
                 aria-label="Browser: activate to sort column ascending" 
-                style="width: 505.562px;">NOME
+                style="width: 505.562px;">ITEM
             </th>
             <th class="sorting" 
                 tabindex="0" 
@@ -85,13 +76,12 @@
     <tbody>
         @foreach($reports as $report)
             <tr class="gradeA odd" role="row">
-                <td align='left'><img src="/img/itens/{{ $report->itemOut->photo }}" class="img-circle m-b"width="50px"></td>
-                <td align='left'>{{ $report->itemOut->name_item }}</td>
-                <td align='left'>{{ $report->itemOut->description }}</td>
-                <td align='left'>{{ $report->dt_in }}</td>
-                <td align='left'>{{ $report->responsible_in }}</td>
-                <td align='left'>{{ $report->dt_out }}</td>
-                <td align='left'>{{ $report->responsible_out }}</td>
+                <td align='center'>{{ $report->itemOut->name_item }}</td>
+                <td align='center'>{{ $report->itemOut->description }}</td>
+                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_in)) }}</td>
+                <td align='center'>{{ $report->responsible_in }}</td>
+                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_out)) }}</td>
+                <td align='center'>{{ $report->responsible_out }}</td>
             </tr>
         @endforeach    
     </tbody>
@@ -118,7 +108,7 @@ $(document).ready(function() {
     "bAutoWidth": true,
     "bDeferRender": true,
     "bLengthChange": false,
-    "pageLength": 5,
+    "pageLength": 10,
     "order": [0, 'desc'],
 
         dom: "Bfrtip",
