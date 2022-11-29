@@ -112,13 +112,14 @@
             </th>
         </tr>
     </thead>
+{{-- tabela --}}
     
     <tbody>
         @foreach($resources as $resource)
             <tr class="gradeA odd" role="row" onclick="selectItem({{ $resource->id }})">
                 <td align='center'>{{ $resource->name_item }}</td>
                 <td align='center'>{{ $resource->description }}</td>
-                <td align='center'>{{ $resource->group->name_group }}</td>
+                <td align='center'>{{ $resource->group->description }}</td>
             </tr>
         @endforeach    
     </tbody>
