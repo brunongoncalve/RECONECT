@@ -19,15 +19,21 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function() use ($request) {
-            $data = $request->except(['_token']);
-            $senha = $data['password'] = Hash::make($data['password']);
-
+            $senha = $request->password = Hash::make($request->password);
+            dd($request->file('photo'));
             $user = new User;
-            
-            $user->name = $data['name'];
-            $user->email = $data['email'];
+            $user->name = $request->name;
+            $user->email = $request->email;
             $user->password = $senha;
-            
+
+            if($request->hasFile('photo') && $request->file('photo')->isValid()) {
+                $photo = $request->photo;
+                $extension = $photo->extension();
+                $photoName = md5($photo->getClientOriginalName() . strtotime("now") . "." . $extension);
+                $photo->move(public_path('img/profile'), $photoName);
+                $user->photo = $photoName;
+            }
+    
             $user->save();
         });
 
