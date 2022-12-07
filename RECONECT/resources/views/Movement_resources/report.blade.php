@@ -1,4 +1,4 @@
-@extends('Template.principal')
+@extends('Template.main')
 
 @section('title', 'Reconect | Movimentação Recursos')
 
@@ -76,12 +76,12 @@
     <tbody>
         @foreach($reports as $report)
             <tr class="gradeA odd" role="row">
-                <td align='center'>{{ $report->itemOut->name_item }}</td>
-                <td align='center'>{{ $report->itemOut->description }}</td>
-                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_in)) }}</td>
-                <td align='center'>{{ $report->responsible_in }}</td>
-                <td align='center'>{{ date('d/m/y H:i:s', strtotime($report->dt_out)) }}</td>
-                <td align='center'>{{ $report->responsible_out }}</td>
+                <td align='left'>{{ $report->itemOut->name_item }}</td>
+                <td align='left'>{{ $report->itemOut->description }}</td>
+                <td align='left'>{{ date('d/m/y H:i:s', strtotime($report->dt_in)) }}</td>
+                <td align='left'>{{ $report->responsible_in }}</td>
+                <td align='let'>{{ date('d/m/y H:i:s', strtotime($report->dt_out)) }}</td>
+                <td align='let'>{{ $report->responsible_out }}</td>
             </tr>
         @endforeach    
     </tbody>

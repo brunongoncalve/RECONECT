@@ -16,6 +16,7 @@ class CreateItensTable extends Migration
         Schema::create('itens', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('groups_id')->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->string('name_item')->nullable();
             $table->text('description')->nullable();
             $table->integer('status')->nullable();

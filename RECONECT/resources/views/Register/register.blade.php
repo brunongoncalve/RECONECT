@@ -27,6 +27,7 @@
 <h4 class="h1-registro">Registre-se em nosso portal.</h4>
     <form class="m-t" 
           action="{{ route('register') }}"
+          enctype="multpart/form-data"
           method="POST">
         @csrf
             
@@ -64,6 +65,13 @@
            id="password"
            name="password"
            required>
+</div>
+
+<div class="form-group">
+    <input type="file" 
+           class="form-control" 
+           id="photo"
+           name="photo">
 </div>
       
 <button type="submit" 

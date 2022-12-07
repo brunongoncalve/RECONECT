@@ -1,4 +1,4 @@
-@extends('Template.principal')
+@extends('Template.main')
 
 @section('title', 'Reconect | Cadastro Grupo')
 

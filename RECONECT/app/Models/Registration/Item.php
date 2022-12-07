@@ -13,4 +13,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\Registration\Group', 'groups_id', 'id');
     }
+
+    public function statu()
+    {
+        return $this->belongsTo('App\Models\Registration\Status', 'status_id', 'id');
+    }
 }

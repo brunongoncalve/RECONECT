@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Registration\Item;
 use App\Models\Registration\Group;
+use App\Models\Registration\Status;
 
 class RegistrationItemController extends Controller
 {
@@ -16,8 +17,11 @@ class RegistrationItemController extends Controller
     {
         $groups = new Group;
         $groups = Group::all();
+        $status = new Status;
+        $status = Status::all();
         return view('Registration.item_index')
-               ->with('groups', $groups);
+               ->with('groups', $groups)
+               ->with('status', $status);
     }
 
     public function store(Request $request)
@@ -27,9 +31,10 @@ class RegistrationItemController extends Controller
 
             while($counter < $request->quantity) {
                 $item = new Item;
+                $item->status_id = $request->status;
                 $item->name_item = $request->name_item;
                 $item->description = $request->description;
-                $item->groups_id = $request->account;
+                $item->groups_id = $request->group;
                 $item->status = 0;
                 $item->save();
                 

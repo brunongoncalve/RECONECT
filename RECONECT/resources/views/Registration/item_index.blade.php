@@ -1,4 +1,4 @@
-@extends('Template.principal')
+@extends('Template.main')
 
 @section('title', 'Reconect | Cadastro item')
 
@@ -27,12 +27,25 @@
         <div class="ibox-content">
 
 <div class="form-group">
+    <label class="font-normal">STATUS DO ITEM:</label>
+        <div class="input-group">
+            <select class="form-control m-b" 
+                    name="status" 
+                    id="status">
+                        <option></option>
+                            @foreach($status as $statu) 
+                                <option value="{{ $statu->id }}">{{ $statu->id }} - {{ $statu->description }}</option>
+                            @endforeach
+            </select>
+        </div>
+</div>        
+
+<div class="form-group">
     <label class="font-normal">GRUPO DO ITEM:</label>
         <div class="input-group">
             <select class="form-control m-b" 
-                    name="account" 
-                    id="group" 
-                    name="group">
+                    name="group" 
+                    id="group">
                         <option></option>
                             @foreach($groups as $group) 
                                 <option value="{{ $group->id }}">{{ $group->id }} - {{ $group->description }}</option>
@@ -81,5 +94,15 @@
 @endsection
 
 @section('scripts')
+
+<script>
+
+function loadUser(id)
+{
+    $('#Xmod_titulo').html('<h3>SELECIONA USUARIO:</h3>');
+    listaJS('Xmod_corpo', '{{ route('load_user') }}','GET');
+}
+
+</script>
 
 @endsection

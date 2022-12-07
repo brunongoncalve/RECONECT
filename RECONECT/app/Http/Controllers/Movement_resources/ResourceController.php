@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Registration\Item;
 use App\Models\Registration\ItemMovement;
+use App\Models\User;
 
 class ResourceController extends Controller
 {
@@ -21,17 +22,45 @@ class ResourceController extends Controller
                ->with('resourcesOut', $resourcesOut);
     }
 
+    public function loadUser()
+    {
+        $loadUser = new User;
+        $loadUser = User::all();
+        return view('Movement_resources.load_user')
+               ->with('loadUser', $loadUser);
+    }
+
+    public function loadUserOut()
+    {
+        $loadUserOut = new User;
+        $loadUserOut = User::all();
+        return view('Movement_resources.load_user_out')
+               ->with('loadUser', $loadUserOut);
+    }
+
+    public function selectUser(Request $request)
+    {
+        $selectUser = User::find($request->param1);
+        return response()->json($selectUser);
+    }
+
+    public function selectUserOut(Request $request)
+    {
+        $selectUserOut = User::find($request->param1);
+        return response()->json($selectUserOut);
+    }
+
     public function selectItem(Request $request)
     {
-        $loadItem = Item::find($request->param1);
-        return response()->json($loadItem);
+        $selectItem = Item::find($request->param1);
+        return response()->json($selectItem);
     }
 
     public function selectItemOut(Request $request)
     {
-        $loadItemOut = ItemMovement::find($request->param1);
-        $loadItemOut->item = $loadItemOut->itemOut()->get();
-        return response()->json($loadItemOut);
+        $selectItemOut = ItemMovement::find($request->param1);
+        $selectItemOut->item = $selectItemOut->itemOut()->get();
+        return response()->json($selectItemOut);
     }
 
     public function exitItem(Request $request)
@@ -45,12 +74,11 @@ class ResourceController extends Controller
                 $exitItem->dt_in = date('Y-m-d H:i:s');
                 $exitItem->dt_out = '';
                 $exitItem->status = 1;
+                $exitItem->save();
 
                 DB::table('itens')
                     ->where('id', $request->id)
                     ->update(['status' => 1]);
-            
-                $exitItem->save();
             }
         });
             
@@ -63,7 +91,7 @@ class ResourceController extends Controller
                               'status' => 0]);
             
                 DB::table('itens')
-                    ->where('id', $request->id_item_out)
+                    ->where('id', $request->id_out)
                     ->update(['status' => 0]);
             } 
         });
