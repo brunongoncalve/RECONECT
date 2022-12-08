@@ -20,9 +20,11 @@ class RegistrationGroupController extends Controller
     {
         DB::transaction(function() use ($request) {
             $group = new Group;
-            $group->name_group = $request->name_group;
-            $group->description = $request->description;
-            $group->status = 0;
+
+            $group->name_group       = $request->name_group;
+            $group->description      = $request->description;
+            $group->status           = 0;
+            
             $group->save();
         });
     

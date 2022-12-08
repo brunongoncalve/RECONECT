@@ -8,6 +8,8 @@ use App\Http\Controllers\Registration\RegistrationItemController;
 use App\Http\Controllers\Movement_resources\ResourceController;
 use App\Http\Controllers\Registration\RegistrationGroupController;
 use App\Http\Controllers\Registration\RegistrationStatusController;
+use App\Http\Controllers\Registration\RegistrationUserController;
+use App\Http\Controllers\RH\BirthdayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +46,7 @@ Route::middleware([App\Http\Middleware\Seguranca::class])->group(function () {
     Route::post('/registration_status', [RegistrationStatusController::class, 'store'])->name('registration_status');
     Route::get('/select_user_out', [ResourceController::class, 'selectUserOut'])->name('select_user_out');
     Route::get('/load_user_out', [ResourceController::class, 'loadUserOut'])->name('load_user_out');
+    Route::get('/registration_user', [RegistrationUserController::class, 'index'])->name('registration_user');
+    Route::post('/registration_user', [RegistrationUserController::class, 'store'])->name('registration_user');
+    Route::get('/birthday', [BirthdayController::class, 'index'])->name('birthday');
 });
