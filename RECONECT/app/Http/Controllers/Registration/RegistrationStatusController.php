@@ -20,9 +20,11 @@ class RegistrationStatusController extends Controller
     {
         DB::transaction(function() use ($request) {
             $status = new Status;
-            $status->name_status = $request->name_status;
-            $status->description = $request->description;
-            $status->status = 0;
+
+            $status->name_status   = $request->name_status;
+            $status->description   = $request->description;
+            $status->status        = 0;
+
             $status->save();
         });
     

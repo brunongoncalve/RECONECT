@@ -31,11 +31,13 @@ class RegistrationItemController extends Controller
 
             while($counter < $request->quantity) {
                 $item = new Item;
-                $item->status_id = $request->status;
-                $item->name_item = $request->name_item;
-                $item->description = $request->description;
-                $item->groups_id = $request->group;
-                $item->status = 0;
+
+                $item->status_id      = $request->status;
+                $item->name_item      = $request->name_item;
+                $item->description    = $request->description;
+                $item->groups_id      = $request->group;
+                $item->status         = 0;
+
                 $item->save();
                 
             $counter++;

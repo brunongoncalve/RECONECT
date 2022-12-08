@@ -39,10 +39,10 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="{{ auth()->user()->photo}}"/>
+                            <img alt="image" class="rounded-circle" width="80px" src="img/profile/{{ auth()->user()->photo }}"/>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold">{{ auth()->user()->name }}</span>
-                                <span class="text-muted text-xs block"><b class="caret"></b></span>
+                                <span class="text-muted text-xs block">{{ auth()->user()->department }}<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
@@ -53,6 +53,18 @@
                         <div class="logo-element">
                             IN+
                         </div>
+                    </li>
+                        <li>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">ANIVERSARIANTES</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                          <li><a href="{{ route('birthday') }}">Lista de Aniversariantes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">MENU</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                          <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">RECURSOS</span><span class="fa arrow"></span></a>

@@ -46,6 +46,13 @@
         </div>
 </div>
 
+<div class="form-group">
+    <input type="file" 
+           class="form-control" 
+           id="photo"
+           name="photo">
+</div>
+
 <button type="submit" 
         class="btn btn-primary block full-width m-b">Salvar
 </button>
