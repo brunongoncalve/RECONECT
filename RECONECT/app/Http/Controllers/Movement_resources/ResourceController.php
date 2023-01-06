@@ -14,9 +14,7 @@ class ResourceController extends Controller
     public function index()
     {
         $resources = Item::where('status', 0)->get();
-        $resourcesOut = ItemMovement::where('status', 1)
-                                      ->orderBy('dt_in', 'DESC')
-                                      ->get(); 
+        $resourcesOut = ItemMovement::where('status', 1)->orderBy('dt_in', 'DESC')->get(); 
         return view('Movement_resources.resource_index')
                ->with('resources', $resources)
                ->with('resourcesOut', $resourcesOut);
@@ -69,11 +67,12 @@ class ResourceController extends Controller
             if($request->id) {
                 $exitItem = new ItemMovement;
 
-                $exitItem->id_item = $request->id;
-                $exitItem->responsible_in = $request->responsible_in;
-                $exitItem->dt_in = date('Y-m-d H:i:s');
-                $exitItem->dt_out = '';
-                $exitItem->status = 1;
+                $exitItem->id_item              = $request->id;
+                $exitItem->responsible_in       = $request->responsible_in;
+                $exitItem->dt_in                = date('Y-m-d H:i:s');
+                $exitItem->dt_out               = '';
+                $exitItem->status               = 1;
+
                 $exitItem->save();
 
                 DB::table('itens')
@@ -86,9 +85,9 @@ class ResourceController extends Controller
             if($request->id_out) {
                 DB::table('itens001')
                     ->where('id', $request->id_out)
-                    ->update(['dt_out' => date('Y-m-d H:i:s'),
-                              'responsible_out' => $request->responsible_out, 
-                              'status' => 0]);
+                    ->update(['dt_out'           => date('Y-m-d H:i:s'),
+                              'responsible_out'  => $request->responsible_out, 
+                              'status'           => 0]);
             
                 DB::table('itens')
                     ->where('id', $request->id_out)
