@@ -37,7 +37,6 @@ class RegistrationItemController extends Controller
                 $item->description    = $request->description;
                 $item->groups_id      = $request->group;
                 $item->status         = 0;
-
                 $item->save();
                 
             $counter++;

@@ -29,13 +29,11 @@ class RegistrationUserController extends Controller
             $user->password      = $senha;
             $user->birth         = $request->birth;
             $user->department    = $request->department;
-
             if($request->hasFile('photo') && $request->file('photo')->isValid()) {
                 $photo = $request->photo;
                 $extension = $photo->extension();
                 $photoName = md5($photo->getClientOriginalName() . strtotime("now") . "." . $extension);
                 $photo->move(public_path('img/profile'), $photoName);
-
                 $user->photo = $photoName;
             }
     

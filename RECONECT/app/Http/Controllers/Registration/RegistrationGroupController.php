@@ -24,7 +24,6 @@ class RegistrationGroupController extends Controller
             $group->name_group       = $request->name_group;
             $group->description      = $request->description;
             $group->status           = 0;
-            
             $group->save();
         });
     
