@@ -24,7 +24,6 @@ class RegistrationStatusController extends Controller
             $status->name_status   = $request->name_status;
             $status->description   = $request->description;
             $status->status        = 0;
-
             $status->save();
         });
     

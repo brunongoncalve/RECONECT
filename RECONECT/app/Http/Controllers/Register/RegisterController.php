@@ -26,7 +26,6 @@ class RegisterController extends Controller
             $user->name          = $request->name;
             $user->email         = $request->email;
             $user->password      = $senha;
-            
             $user->save();
         });
 

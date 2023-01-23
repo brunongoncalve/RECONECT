@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Movement_resources;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use App\Models\Registration\Item;
 use App\Models\Registration\ItemMovement;
 use App\Models\User;
@@ -72,7 +73,6 @@ class ResourceController extends Controller
                 $exitItem->dt_in                = date('Y-m-d H:i:s');
                 $exitItem->dt_out               = '';
                 $exitItem->status               = 1;
-
                 $exitItem->save();
 
                 DB::table('itens')
