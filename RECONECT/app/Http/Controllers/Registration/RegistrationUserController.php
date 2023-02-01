@@ -31,8 +31,7 @@ class RegistrationUserController extends Controller
             $user->department    = $request->department;
             if($request->hasFile('photo') && $request->file('photo')->isValid()) {
                 $photo = $request->photo;
-                $extension = $photo->extension();
-                $photoName = md5($photo->getClientOriginalName() . strtotime("now") . "." . $extension);
+                $photoName = uniqid() . '.jpeg';
                 $photo->move(public_path('img/profile'), $photoName);
                 $user->photo = $photoName;
             }

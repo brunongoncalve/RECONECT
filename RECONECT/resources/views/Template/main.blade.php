@@ -39,10 +39,10 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" width="80px" src="img/profile/{{ auth()->user()->photo }}"/>
+                            <img alt="image" class="rounded-circle" style="max-height: 150px;" src="img/profile/{{ auth()->user()->photo }}"/>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="block m-t-xs font-bold">{{ auth()->user()->name }}</span>
-                                <span class="text-muted text-xs block">{{ auth()->user()->department }}<b class="caret"></b></span>
+                                <span class="block m-t-xs font-bold" align="center">{{ auth()->user()->name }}</span>
+                                <span class="text-muted text-xs block" align="center">{{ auth()->user()->department }}<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
@@ -74,6 +74,12 @@
                           <li><a href="{{ route('registration_item') }}">Cadastro do item</a></li>
                           <li><a href="{{ route('movement_resources') }}">Movimentação</a></li>
                           <li><a href="{{ route('resources_report') }}">Relatorio</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">PORTARIA</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                          <li><a href="{{ route('managers') }}">Gestores</a></li>
                         </ul>
                     </li>
 
@@ -173,7 +179,7 @@
        
 <div class="footer">
     <div align="center">
-        <strong>Reconect</strong> Company &copy; 2022
+        <strong>Reconect</strong> Company &copy; {{ date('Y') }}
     </div>
 </div>
 
