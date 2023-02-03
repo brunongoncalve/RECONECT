@@ -81,14 +81,15 @@
                                         </a>
                                         <button type="submit" 
                                                 class="btn btn-success" 
-                                                onclick="entry('ENTRY')" 
+                                                onclick="entryExit('ENTRY')"
+                                                style="display: none" 
                                                 name="btn_entry" 
                                                 id="btn_entry" 
                                                 value="ENTRY">&nbsp;Entrada&nbsp;
                                         </button>
                                         <button type="submit" 
                                                 class="btn btn-danger"  
-                                                onclick="entrada('SAIDA')"  
+                                                onclick="entryExit('EXIT')"  
                                                 style="display: none" 
                                                 name="btn_exit" 
                                                 id="btn_exit" 
@@ -173,11 +174,14 @@ function selectManager(id)
     requisicao('{{ route('select_manager') }}','GET', id)
     .then(result => { 
         result = JSON.parse(result);
+        console.log(result);
             $('#photo').html("<img class='img-responsive avatar-view' src='img/profile/"+ result.photo +"'>");
             $('#id').val(result.id);
             $('#name').val(result.name);
+            $('#car').val(result.lastCar.car_in);
+            $('#sign').val(result.lastCar.sign_in);
             $('#XModal').modal('hide');
-            
+            insideOrOutside(id);
 
 }).catch(error => {
     console.log(error);
@@ -189,20 +193,18 @@ function insideOrOutside(id)
     requisicao('{{route('select_manager')}}','GET', id)
     .then(result => { 
     result = JSON.parse(result);
-        if(result.VEICULO_GESTOR.STATUS == 0) {
-            $('#btn_limpa').show('slow');
-            $('#btn_saida').show('slow');
-            $('#btn_entrada').hide('slow');
-            $('#ACAO').val('SAIDA');
-            $('#DN_VEICULO').val();
-            $('#DN_PLACA').val();
+        if(result.lastCar.status == 0) {
+            $('#btn_clean').show('slow');
+            $('#btn_exit').show('slow');
+            $('#btn_entry').hide('slow');
+            $('#car').val();
+            $('#sign').val();
         } else {
-            $('#btn_limpa').show('slow');
-            $('#btn_entrada').show('slow');
-            $('#btn_saida').hide('slow');
-            $('#ACAO').val('ENTRADA');
-            $('#DN_VEICULO').val();
-            $('#DN_PLACA').val();
+            $('#btn_clean').show('slow');
+            $('#btn_entry').show('slow');
+            $('#btn_exit').hide('slow');
+            $('#car').val();
+            $('#sign').val();
         }
 
 }).catch(error => {
@@ -210,7 +212,7 @@ console.log(error);
 }); 
 }
 
-function entry(ACTION)
+function entryExit(ACTION)
 {
     const car = $('#car').val();
     const sign = $('#sign').val();
