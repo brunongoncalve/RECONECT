@@ -26,6 +26,7 @@ class ManagersController extends Controller
     public function selectManager(Request $request)
     {
         $selectManager = User::find($request->param1);
+        $selectManager->lastCar = $selectManager->lastCar();
         return response()->json($selectManager);
     }
 
@@ -46,9 +47,19 @@ class ManagersController extends Controller
                 $saveEntry->responsible    = auth()->user()->id;
                 $saveEntry->save();
             }
+
+            if($request->btn_exit == 'EXIT') {
+                DB::table('port001')
+                    ->where('id', $request->param3)
+                    ->update(['car_out'      => $request->param1,
+                              'sign_out'     => $request->param2,
+                              'date_out'     => date('Y-m-d H:i:s'),
+                              'responsible'  => auth()->user()->id,
+                              'STATUS'       => 1
+                            ]); 
+            }
         });
 
-        Session::flash('mensagem', 'ENTRADA REALIZADA COM SUCESSO');
         return redirect()->route('managers');
     }
 
