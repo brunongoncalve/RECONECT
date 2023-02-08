@@ -55,6 +55,10 @@
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
                                 <label>VEICULO:</label>
+                                     <input type="button"
+                                            class="form-control"
+                                            name="id_car"
+                                            id="id_car">
                                      <input type="text" 
                                             class="form-control" 
                                             name="car" 
@@ -178,6 +182,7 @@ function selectManager(id)
             $('#photo').html("<img class='img-responsive avatar-view' src='img/profile/"+ result.photo +"'>");
             $('#id').val(result.id);
             $('#name').val(result.name);
+            $('#id_car').val(result.lastCar.id);
             $('#car').val(result.lastCar.car_in);
             $('#sign').val(result.lastCar.sign_in);
             $('#XModal').modal('hide');
@@ -216,9 +221,10 @@ function entryExit(ACTION)
 {
     const car = $('#car').val();
     const sign = $('#sign').val();
-    const id = $('#id').val();
+     const id = $('#id').val();
+    const id_car = $('#id_car').val();
 
-    requisicao('{{route('managers')}}','POST', car,sign,id,ACTION)
+    requisicao('{{route('managers')}}','POST', car,sign,id,id_car,ACTION)
     .then(result => { 
 
 }).catch(error =>{
