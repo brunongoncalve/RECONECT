@@ -45,7 +45,7 @@
                                 <span class="text-muted text-xs block" align="center">{{ auth()->user()->department }}<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile') }}">Perfil</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
                             </ul>
