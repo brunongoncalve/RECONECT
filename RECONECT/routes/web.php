@@ -58,6 +58,8 @@ Route::controller(RegistrationStatusController::class)->group(function() {
 Route::controller(RegistrationUserController::class)->group(function() {
     Route::get('/registration_user', 'index')->name('registration_user')->middleware(Seguranca::class);
     Route::post('/registration_user', 'store')->name('registration_user')->middleware(Seguranca::class);
+    Route::get('/profile', 'profile')->name('profile')->middleware(Seguranca::class);
+    Route::post('/profile', 'alterPhoto')->name('profile')->middleware(Seguranca::class);
 });
 
 Route::controller(ResourceController::class)->group(function() {
