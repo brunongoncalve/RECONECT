@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\FormAlterPhotoRequest;
 use App\Models\User;
 
 class RegistrationUserController extends Controller
@@ -49,20 +50,20 @@ class RegistrationUserController extends Controller
        return view('Integra.profile');
     }
 
-    public function alterPhoto(Request $request)
+    public function alterPhoto(FormAlterPhotoRequest $request)
     {
-        $user = User::where('id', auth()->user()->id)->get();
-        $user1 = json_decode($user);
-        $dirFile = public_path('img/profile/' . $user1[0]->photo);
+        DB::transaction(function() use ($request) {
+            $user = User::where('id', auth()->user()->id)->get();
+            $user1 = json_decode($user);
+            $dirFile = public_path('img/profile/' . $user1[0]->photo);
 
-        DB::transaction(function() use ($request, $dirFile) {
             if($request->btn_save_profile == 'btn_save_profile') {
                 if(file_exists($dirFile)) {
                     unlink($dirFile);
                 }
                     if($request->hasFile('alter_photo') && $request->file('alter_photo')->isValid()) {
-                        $photo = $request->alter_photo;
-                        $photoName = uniqid() . '.jpeg';
+                        $photo       = $request->alter_photo;
+                        $photoName   = uniqid() . '.jpeg';
                         $photo->move(public_path('img/profile'), $photoName);
 
                         DB::table('users')
