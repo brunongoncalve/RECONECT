@@ -16,11 +16,19 @@
           method="POST">
         @csrf
 
+            @if($errors->any())
+                <div class="alert alert-danger m-b">
+                    @foreach ($errors->all() as $error)
+                        <p align='center'>{{ $error }}</p>
+                     @endforeach
+                </div>
+            @endif
+
             @if(session('mensagem'))
                 <div class="alert alert-success">
-                    <p align='center'>{{session('mensagem')}}</p>
+                    <p align='center'>{{ session('mensagem') }}</p>
                 </div>
-            @endif 
+            @endif
 
                 <div class="form-group">
                     <label class="font-normal">ALTERE A FOTO PERFIL:</label>
