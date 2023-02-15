@@ -10,6 +10,7 @@ use App\Http\Controllers\Movement_resources\ResourceController;
 use App\Http\Controllers\Registration\RegistrationGroupController;
 use App\Http\Controllers\Registration\RegistrationStatusController;
 use App\Http\Controllers\Registration\RegistrationUserController;
+use App\Http\Controllers\Registration\RegistrationTagController;
 use App\Http\Controllers\RH\BirthdayController;
 use App\Http\Controllers\Teste\TesteController;
 use App\Http\Controllers\Ordinance\ManagersController;
@@ -38,6 +39,13 @@ Route::controller(RegisterController::class)->group(function() {
 
 Route::controller(IntegraController::class)->group(function() {
     Route::get('/integra', 'index')->name('integra')->middleware(Seguranca::class);
+    Route::get('/post', 'post')->name('post')->middleware(Seguranca::class);
+    Route::post('/post', 'savePost')->name('post')->middleware(Seguranca::class);
+});
+
+Route::controller(RegistrationTagController::class)->group(function() {
+    Route::get('/registration_tag', 'index')->name('registration_tag')->middleware(Seguranca::class);
+    Route::post('/registration_tag', 'store')->name('registration_tag')->middleware(Seguranca::class);
 });
 
 Route::controller(RegistrationItemController::class)->group(function() {
