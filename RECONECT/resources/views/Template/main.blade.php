@@ -45,6 +45,7 @@
                                 <span class="text-muted text-xs block" align="center">{{ auth()->user()->department }}<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a class="dropdown-item" href="{{ route('integra') }}">Inicio</a></li>
                                 <li><a class="dropdown-item" href="{{ route('profile') }}">Perfil</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
@@ -64,6 +65,7 @@
                         <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">MENU</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
+                          <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                         </ul>
                     </li>
                     <li>
