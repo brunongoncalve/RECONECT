@@ -221,7 +221,7 @@ function entryExit(ACTION)
 {
     const car = $('#car').val();
     const sign = $('#sign').val();
-     const id = $('#id').val();
+    const id = $('#id').val();
     const id_car = $('#id_car').val();
 
     requisicao('{{route('managers')}}','POST', car,sign,id,id_car,ACTION)
