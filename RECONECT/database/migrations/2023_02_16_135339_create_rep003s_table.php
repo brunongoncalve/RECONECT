@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRep002Table extends Migration
+class CreateRep003sTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRep002Table extends Migration
      */
     public function up()
     {
-        Schema::create('rep002', function (Blueprint $table) {
+        Schema::create('rep003s', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('users_id')->constrained();
-            $table->string('tag_name')->nullable();
+            $table->foreignId('rep001s_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRep002Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rep002');
+        Schema::dropIfExists('rep003s');
     }
 }

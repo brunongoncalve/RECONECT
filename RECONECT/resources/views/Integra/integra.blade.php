@@ -28,66 +28,39 @@
                         <img class="rounded-circle" alt="image" src="img/profile/{{ $post->userPost->photo }}">
                     </a>
                         <div class="media-body">
-                            <a href="#">
-                                {{ $post->userPost->name }}
-                            </a>
-                            <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }}</small>
+                            <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
+                            <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
                         </div>
                 </div>
                 <div class="social-body">
-                    <p>
-                       <img align="center" alt="image" src="img/post/{{ $post->message }}">
-                    </p>
+                        <p>
+                            <img align="center" alt="image" src="img/post/{{ $post->message }}">
+                        </p>
                 <div class="btn-group">
-                    <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Curtida</button>
+                <form action="{{ route('like') }}"
+                      method="POST">
+                    @csrf  
+                    <button class="btn btn-white btn-xs"
+                            type="submit" 
+                            value="{{ $post->id }}"
+                            name="btn_like"
+                            id="btn_like">
+                                <i class="fa fa-thumbs-up"></i> Curtida</button>
                     <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comentario</button>     
                     <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Compartilhar</button>
+                </form>    
                 </div>
             </div>
-        
-            <div class="social-footer">
-                <div class="social-comment">
-                    <a href="" class="float-left">
-                        <img class="rounded-circle" alt="image" src="img/profile/{{ auth()->user()->photo }}">
-                    </a>
-                        <div class="media-body">
-                            <a href="#">
-                                {{ auth()->user()->name }}
-                            </a>
-                                Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                            <br>
-                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                                <small class="text-muted">12.06.2014</small>
-                        </div>
-                </div>
-                <div class="social-comment">
-                    <a href="" class="float-left">
-                        <img class="rounded-circle" alt="image" src="img/profile/{{ auth()->user()->photo }}">
-                    </a>
-                <div class="media-body">
-                    <a href="#">
-                        {{ auth()->user()->name }}
-                    </a>
-                        Making this the first true generator on the Internet. It uses a dictionary of. <br>
-                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                    <small class="text-muted">10.07.2014</small>
-                </div>
-            </div>
-
-            <div class="social-comment">
-                <a href="" class="float-left">
-                    <img class="rounded-circle" alt="image" src="img/profile/{{ auth()->user()->photo }}">
-                </a>
-                <div class="media-body">
-                    <textarea class="form-control" placeholder="Write comment..."></textarea>
-                </div>
-            </div>
-    </div>
-    @endforeach 
+        </div>
+        @endforeach 
 </div>
 
 @endsection
 
 @section('scripts')
+
+<script>
+
+</script>
 
 @endsection

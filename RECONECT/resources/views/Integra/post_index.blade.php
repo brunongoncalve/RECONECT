@@ -35,11 +35,11 @@
                      <div class="ibox-content">
 
                         <div class="form-group">
-                            <label class="font-normal">STATUS DO ITEM:</label>
+                            <label class="font-normal">Tag:</label>
                                 <div class="input-group">
                                     <select class="form-control m-b" 
-                                            name="status" 
-                                            id="status">
+                                            name="tag_id" 
+                                            id="tag_id">
                                             <option></option>
                                                 @foreach($dataTag as $tag) 
                                                     <option value="{{ $tag->id }}">{{ $tag->id }} - {{ $tag->tag_name }}</option>
