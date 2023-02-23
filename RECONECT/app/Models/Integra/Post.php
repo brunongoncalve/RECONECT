@@ -19,4 +19,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Integra\Tag', 'rep002s_id', 'id');
     }
+
+    public function likePost()
+    {
+        return $this->belongsTo('App\Models\Integra\Like', 'rep001s_id', 'id');
+    }
 }
