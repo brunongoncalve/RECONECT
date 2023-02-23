@@ -54,19 +54,19 @@ class IntegraController extends Controller
     public function likePost(Request $request)
     {
         DB::transaction(function() use ($request) {
-            $likes = Like::where('id', $request->btn_like)->where('id', auth()->user()->id)->get();
-            $count = $likes->count();
-            dd($count);
-            if($request->btn_like == TRUE) {
-                if($count == 0) {
-                    $like = new Like;
+            $postLikes = Like::where('rep001s_id', $request->id_post)->get();
+            $postLike = json_decode($postLikes);
 
-                    $like->rep001s_id = $request->btn_like;
-                    $like->users_id = auth()->user()->id;
-                    $count++; 
-                    $like->save();
-                }
+            if($request->id_post == TRUE) { 
+                $like = new Like;
+                $like->rep001s_id = $request->id_post;
+                $like->users_id = auth()->user()->id;
+                $like->save();
             }
         });
+
+        Session::flash('mensagem1', 'CURTIU !!!');
+        return redirect()->route('integra');
     }
 }
+

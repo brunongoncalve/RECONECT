@@ -19,7 +19,13 @@
         </div>
     </div>
 
-        <a href="{{ route('post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
+    @if(session('mensagem1'))
+        <div class="alert alert-success">
+            <p align='center'>{{session('mensagem1')}}</p>
+        </div>
+    @endif 
+
+    <a href="{{ route('post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
 
         @foreach($data as $post)
             <div class="social-feed-box">
@@ -43,9 +49,9 @@
                     <button class="btn btn-white btn-xs"
                             type="submit" 
                             value="{{ $post->id }}"
-                            name="btn_like"
-                            id="btn_like">
-                                <i class="fa fa-thumbs-up"></i> Curtida</button>
+                            name="id_post"
+                            id="id_post">
+                                <i class="fa fa-thumbs-up"></i> Curtida {{ $post->likePost->rep001s_id }}</button>
                     <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comentario</button>     
                     <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Compartilhar</button>
                 </form>    
