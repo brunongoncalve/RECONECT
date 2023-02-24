@@ -54,15 +54,14 @@ class IntegraController extends Controller
     public function likePost(Request $request)
     {
         DB::transaction(function() use ($request) {
-            $postLikes = Like::where('rep001s_id', $request->id_post)->get();
-            $postLike = json_decode($postLikes);
+            $likes = Post::where('id', $request->id_post)->get();
+            $like = json_decode($likes);
 
-            if($request->id_post == TRUE) { 
-                $like = new Like;
-                $like->rep001s_id = $request->id_post;
-                $like->users_id = auth()->user()->id;
-                $like->save();
-            }
+            if($request->id_post == TRUE) {
+                DB::table('rep001s')
+                    ->where('id', $request->id_post)
+                    ->delete(); 
+                }
         });
 
         Session::flash('mensagem1', 'CURTIU !!!');
