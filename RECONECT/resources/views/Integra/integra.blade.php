@@ -51,9 +51,8 @@
                             value="{{ $post->id }}"
                             name="id_post"
                             id="id_post">
-                                <i class="fa fa-thumbs-up"></i> Curtida {{ $post->likePost->rep001s_id }}</button>
-                    <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comentario</button>     
-                    <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Compartilhar</button>
+                                <i class="fa fa-thumbs-up"></i> {{ $post->like }}
+                    </button>
                 </form>    
                 </div>
             </div>
