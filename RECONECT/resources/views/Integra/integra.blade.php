@@ -42,18 +42,14 @@
                         <p>
                             <img align="center" alt="image" src="img/post/{{ $post->message }}">
                         </p>
-                <div class="btn-group">
-                <form action="{{ route('like') }}"
-                      method="POST">
-                    @csrf  
+                <div class="btn-group"> 
                     <button class="btn btn-white btn-xs"
-                            type="submit" 
-                            value="{{ $post->id }}"
+                           
+                            onclick="like('{{ $post->id }}')"
                             name="id_post"
                             id="id_post">
-                                <i class="fa fa-thumbs-up"></i> {{ $post->like }}
+                                <i class="fa fa-thumbs-up"></i>  {{ $post->likePost->count() }}
                     </button>
-                </form>    
                 </div>
             </div>
         </div>
@@ -65,6 +61,16 @@
 @section('scripts')
 
 <script>
+
+function like(id)
+{
+    requisicao('{{ route('like') }}', 'POST', id)
+    .then(result => { 
+
+}).catch(error =>{
+console.log(error);
+}); 
+}
 
 </script>
 
