@@ -18,7 +18,6 @@ class CreateRep001sTable extends Migration
             $table->foreignId('users_id')->constrained();
             $table->foreignId('rep002s_id')->constrained();
             $table->string('message')->nullable();
-            $table->string('like')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });
