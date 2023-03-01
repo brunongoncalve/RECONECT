@@ -20,7 +20,7 @@ class IntegraController extends Controller
                ->with('data', $data);
     }
 
-    public function post()
+    public function dataPost()
     {
         $dataTag = Tag::all();
         return view('Integra.post_index')
@@ -54,16 +54,25 @@ class IntegraController extends Controller
     public function likePost(Request $request)
     {
         DB::transaction(function() use ($request) {
-            if($request->param1 == TRUE) {
+            if($request->id_post == TRUE) {
                $like = new Like;
 
                $like->users_id     = auth()->user()->id;
-               $like->rep001s_id   = $request->param1;
+               $like->rep001s_id   = $request->id_post;
                $like->save();
+            }
 
-               Session::flash('mensagem1', 'CURTIU !!!');
+            if($request->id_post_delete == TRUE) {
+                DB::table('rep003s')
+                    ->where('rep001s_id', $request->id_post_delete)
+                    ->where('users_id', auth()->user()->id)
+                    ->delete();
             }
         });
+
+        $likess = Like::where('rep001s_id', $request->id_post)->where('users_id', auth()->user()->id)->get();
+        $count = $likess->count();
+        return response()->json($count);
     }
 }
 

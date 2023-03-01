@@ -9,6 +9,10 @@
 	    width: 50%; /* Define a largura da div */
 	    margin: 0 auto; /* Centraliza a div */
 	}
+
+    .input {
+        background-color: transparent;
+    }
 </style>
 
 <div class="container">
@@ -25,7 +29,13 @@
         </div>
     @endif 
 
-    <a href="{{ route('post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
+    @if(session('mensagem2'))
+        <div class="alert alert-danger">
+            <p align='center'>{{session('mensagem2')}}</p>
+        </div>
+    @endif 
+
+    <a href="{{ route('data_post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
 
         @foreach($data as $post)
             <div class="social-feed-box">
@@ -43,13 +53,20 @@
                             <img align="center" alt="image" src="img/post/{{ $post->message }}">
                         </p>
                 <div class="btn-group"> 
-                    <button class="btn btn-white btn-xs"
-                           
-                            onclick="like('{{ $post->id }}')"
-                            name="id_post"
-                            id="id_post">
-                                <i class="fa fa-thumbs-up"></i>  {{ $post->likePost->count() }}
-                    </button>
+                    <form action="{{ route('like') }}"
+                          method="POST"
+                          name="form">
+                        @csrf
+                            <button type="submit"><i class="fa fa-thumbs-up"></i></button>
+                            <input type="text" 
+                                   id="valor" 
+                                   name="valor" 
+                                   value="{{ $post->likePost->count() }}">
+                            <input style="display: none"
+                                   value="{{ $post->id }}"
+                                   name="id_post"
+                                   id="id_post">                        
+                    </form>
                 </div>
             </div>
         </div>
@@ -62,15 +79,21 @@
 
 <script>
 
-function like(id)
-{
-    requisicao('{{ route('like') }}', 'POST', id)
-    .then(result => { 
+$(function() {
+    $('form[name="form"]').submit(function(event) {
+        event.preventDefault();
 
-}).catch(error =>{
-console.log(error);
-}); 
-}
+        $.ajax({
+            url: "{{ route('like') }}",
+            type: "post",
+            data: $(this).serialize(),
+            dataType: 'json', 
+            success: function(response) {
+                $('#valor').val(response);
+            }
+        });
+    });
+});
 
 </script>
 
