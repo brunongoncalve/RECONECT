@@ -11,7 +11,7 @@
 </div><br>
 
     <form class="m-t" 
-          action="{{ route('post') }}"
+          action="{{ route('data_post') }}"
           enctype="multipart/form-data"
           method="POST">
         @csrf
@@ -62,28 +62,16 @@
                                 value="btn_save_post" 
                                 class="btn btn-primary block full-width m-b">Salvar
                         </button>
-
                     </div>
                 </div>
             </div>
-
     </form>             
 
 @endsection
 
 @section('scripts')
 
-<link rel="stylesheet" href="{{ asset('vendor/summernote/dist/summernote.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/select2-3.5.2/select2.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/select2-3.5.2/select2-bootstrap.css') }}">
-<script type="text/javascript" src="{{ asset('vendor/summernote/dist/summernote.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/select2-3.5.2/select2.min.js') }}"></script>
-
 <script>
-
-$(document).ready(function(){
-    $('.summernote').summernote();
-});
 
 </script>
 
