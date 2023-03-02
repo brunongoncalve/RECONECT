@@ -23,11 +23,7 @@
         </div>
     </div>
 
-    @if(session('mensagem1'))
-        <div class="alert alert-success">
-            <p align='center'>{{session('mensagem1')}}</p>
-        </div>
-    @endif 
+
 
     @if(session('mensagem2'))
         <div class="alert alert-danger">
@@ -37,41 +33,37 @@
 
     <a href="{{ route('data_post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
 
-        @foreach($data as $post)
-            <div class="social-feed-box">
-                <div class="social-avatar">
-                    <a href="" class="float-left">
-                        <img class="rounded-circle" alt="image" src="img/profile/{{ $post->userPost->photo }}">
-                    </a>
-                        <div class="media-body">
-                            <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
-                            <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
-                        </div>
-                </div>
-                <div class="social-body">
-                        <p>
-                            <img align="center" alt="image" src="img/post/{{ $post->message }}">
-                        </p>
+    @foreach($data as $post)
+        <div class="social-feed-box">
+            <div class="social-avatar">
+                <a href="" class="float-left">
+                    <img class="rounded-circle" 
+                         alt="image" 
+                         src="img/profile/{{ $post->userPost->photo }}">
+                </a>
+            <div class="media-body">
+                <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
+                    <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
+            </div>
+        </div>
+        <div class="social-body">
+            <p>
+                <img alt="image" 
+                     src="img/post/{{ $post->message }}">
+            </p>
                 <div class="btn-group"> 
-                    <form action="{{ route('like') }}"
-                          method="POST"
-                          name="form">
-                        @csrf
-                            <button type="submit"><i class="fa fa-thumbs-up"></i></button>
-                            <input type="text" 
-                                   id="valor" 
-                                   name="valor" 
-                                   value="{{ $post->likePost->count() }}">
-                            <input style="display: none"
-                                   value="{{ $post->id }}"
-                                   name="id_post"
-                                   id="id_post">                        
-                    </form>
+                    <div class="panel-footer">
+                        <div class="form-group row">
+                            <a onclick="like('{{ $post->id }}')"><i class="fa fa-thumbs-up"></i></a>
+                            <div class="col-md-1" 
+                                 id="like_{{ $post->id }}">@if($post->likePost){{ $post->likePost->count() }}@endif
+                            </div>
+                        </div>                            
+                    </div>
                 </div>
             </div>
         </div>
-        @endforeach 
-</div>
+    @endforeach 
 
 @endsection
 
@@ -79,21 +71,16 @@
 
 <script>
 
-$(function() {
-    $('form[name="form"]').submit(function(event) {
-        event.preventDefault();
+function like(id)
+{
+    requisicao('{{route('like')}}', 'POST', id)
+    .then(result => { 
+        $('#like_'+id).html(result);
 
-        $.ajax({
-            url: "{{ route('like') }}",
-            type: "post",
-            data: $(this).serialize(),
-            dataType: 'json', 
-            success: function(response) {
-                $('#valor').val(response);
-            }
-        });
-    });
-});
+}).catch(error =>{
+console.log(error);
+}); 
+}
 
 </script>
 

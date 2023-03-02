@@ -29,6 +29,7 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -178,12 +179,6 @@
             </ul>
         </nav>
     </div>
-       
-<div class="footer">
-    <div align="center">
-        <strong>Reconect</strong> Company &copy; {{ date('Y') }}
-    </div>
-</div>
 
 @include('Template.baseboard')
                                

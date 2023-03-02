@@ -53,25 +53,24 @@ class IntegraController extends Controller
 
     public function likePost(Request $request)
     {
-        DB::transaction(function() use ($request) {
-            if($request->id_post == TRUE) {
-               $like = new Like;
-
-               $like->users_id     = auth()->user()->id;
-               $like->rep001s_id   = $request->id_post;
-               $like->save();
-            }
-
-            if($request->id_post_delete == TRUE) {
-                DB::table('rep003s')
-                    ->where('rep001s_id', $request->id_post_delete)
-                    ->where('users_id', auth()->user()->id)
-                    ->delete();
-            }
-        });
-
-        $likess = Like::where('rep001s_id', $request->id_post)->where('users_id', auth()->user()->id)->get();
+        $likess = Like::where('rep001s_id', $request->param1)->where('users_id', auth()->user()->id)->get();
         $count = $likess->count();
+            if($request->param1 == TRUE) {
+                if($count == 0) {
+                    $like = new Like;
+                    $like->users_id      = auth()->user()->id;
+                    $like->rep001s_id    = $request->param1;
+                    $like->save();
+                } elseif($count == 1) {
+                    DB::table('rep003s')
+                        ->where('rep001s_id', $request->param1)
+                        ->where('users_id', auth()->user()->id)
+                        ->delete();
+                }
+            }
+
+        $likes = Like::where('rep001s_id', $request->param1)->get();
+        $count = $likes->count();
         return response()->json($count);
     }
 }
