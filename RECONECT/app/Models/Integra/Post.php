@@ -22,6 +22,6 @@ class Post extends Model
 
     public function likePost()
     {
-        return $this->belongsTo('App\Models\Integra\like', 'id', 'rep001s_id');
+        return $this->hasMany('App\Models\Integra\like', 'rep001s_id', 'id');
     }
 }
