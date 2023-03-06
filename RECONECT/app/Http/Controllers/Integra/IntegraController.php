@@ -38,7 +38,7 @@ class IntegraController extends Controller
                     $photo = $request->message;
                     $photoName = uniqid() . '.jpeg';
                     $photo->move(public_path('img/post'), $photoName);
-                    $post->message     = $photoName;
+                    $post->message = $photoName;
                 }
 
                 $post->rep002s_id = $request->tag_id;
@@ -47,7 +47,7 @@ class IntegraController extends Controller
             }
         });
 
-        Session::flash('mensagem', 'CADASTRO REALIZADO COM SUCESSO');
+        Session::flash('mensagem', 'POSTAGEM REALIZADA COM SUCESSO');
         return redirect()->route('integra');
     }
 
@@ -74,6 +74,20 @@ class IntegraController extends Controller
         $likes = Like::where('rep001s_id', $request->param1)->get();
         $count = $likes->count();
         return response()->json($count);
+    }
+
+    public function deletePost(Request $request)
+    {
+        DB::transaction(function() use ($request) {
+            if($request->param1 == TRUE) {
+                DB::table('rep001s')
+                    ->where('id', $request->param1)
+                    ->delete();
+            }   
+        });
+
+        Session::flash('mensagem', 'POSTAGEM DELETADA COM SUCESSO');
+        return redirect()->route('integra'); 
     }
 }
 

@@ -4,17 +4,6 @@
 
 @section('content')
 
-<style>
-	.container {
-	    width: 50%; /* Define a largura da div */
-	    margin: 0 auto; /* Centraliza a div */
-	}
-
-    .input {
-        background-color: transparent;
-    }
-</style>
-
 <div class="container">
     <div class="ibox">
         <div class="ibox-content text-center">
@@ -23,15 +12,13 @@
         </div>
     </div>
 
+    <a href="{{ route('data_post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
 
-
-    @if(session('mensagem2'))
-        <div class="alert alert-danger">
-            <p align='center'>{{session('mensagem2')}}</p>
+    @if(session('mensagem'))
+        <div class="alert alert-success">
+            <p align='center'>{{session('mensagem')}}</p>
         </div>
     @endif 
-
-    <a href="{{ route('data_post') }}" class="btn btn-primary block full-width m-b">Nova Postagem</a>
 
     @foreach($data as $post)
         <div class="social-feed-box">
@@ -44,11 +31,14 @@
             <div class="media-body">
                 <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
                     <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
+                    <a href="{{ route('integra') }}"><i class="glyphicon glyphicon-trash mao pull-right text-danger m-l" 
+                          onclick="delete_post('{{ $post->id }}')"></i></a>&nbsp;&nbsp;&nbsp;
             </div>
         </div>
         <div class="social-body">
             <p>
-                <img alt="image" 
+                <img class="img-fluid" 
+                     alt="image"
                      src="img/post/{{ $post->message }}">
             </p>
                 <div class="btn-group"> 
@@ -71,9 +61,19 @@
 
 <script>
 
+function delete_post(id)
+{
+    requisicao('{{ route('delete_post') }}', 'POST', id)
+    .then(result => { 
+
+}).catch(error =>{
+console.log(error);
+}); 
+}
+
 function like(id)
 {
-    requisicao('{{route('like')}}', 'POST', id)
+    requisicao('{{ route('like') }}', 'POST', id)
     .then(result => { 
         $('#like_'+id).html(result);
 

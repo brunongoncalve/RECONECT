@@ -42,6 +42,7 @@ Route::controller(IntegraController::class)->group(function() {
     Route::get('/data_post', 'dataPost')->name('data_post')->middleware(Seguranca::class);
     Route::post('/data_post', 'savePost')->name('data_post')->middleware(Seguranca::class);
     Route::post('/like', 'likePost')->name('like')->middleware(Seguranca::class);
+    Route::post('/delete_post', 'deletePost')->name('delete_post')->middleware(Seguranca::class);
 });
 
 Route::controller(RegistrationTagController::class)->group(function() {
