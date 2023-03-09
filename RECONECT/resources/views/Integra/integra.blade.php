@@ -4,9 +4,19 @@
 
 @section('content')
 
+<style>
+.social-feed-box {
+    border-radius: 10px;
+}
+
+.ibox-content{
+     border-radius: 10px;
+}
+</style>
+
 <div class="container">
     <div class="ibox">
-        <div class="ibox-content text-center">
+        <div class="ibox-content" align="center">
             <h3 class="m-b-xxs">Social Feed</h3>
                 <small>Entreterimento</small>
         </div>
