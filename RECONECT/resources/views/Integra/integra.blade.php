@@ -42,7 +42,7 @@
                 <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
                     <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
                     <a href="{{ route('integra') }}"><i class="glyphicon glyphicon-trash mao pull-right text-danger m-l" 
-                          onclick="delete_post('{{ $post->id }}')"></i></a>&nbsp;&nbsp;&nbsp;
+                        onclick="delete_post('{{ $post->id }}')"></i></a>&nbsp;&nbsp;&nbsp;
             </div>
         </div>
         <div class="social-body">
@@ -58,11 +58,18 @@
                             <div class="col-md-1" 
                                  id="like_{{ $post->id }}">@if($post->likePost){{ $post->likePost->count() }}@endif
                             </div>
+                             <div class="col-md-1"></div>
+                            <a onclick="comment('{{ $post->id }}')"><i class="fa fa-comment"></i></a>
+                            <div class="col-md-1" 
+                                 id="comment_{{ $post->id }}">@if($post->commentPost){{ $post->commentPost->count() }}@endif
+                            </div>
                         </div>                            
                     </div>
                 </div>
             </div>
         </div>
+ <div>
+ <div id="comment_{{ $post->id }}"></div><br>       
     @endforeach 
 
 @endsection
@@ -90,6 +97,11 @@ function like(id)
 }).catch(error =>{
 console.log(error);
 }); 
+}
+
+function comment(id_post)
+{
+    listaJS('comment_'+id_post,'comment/'+id_post, 'POST');
 }
 
 </script>
