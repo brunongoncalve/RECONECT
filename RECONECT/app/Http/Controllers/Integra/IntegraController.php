@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Integra\Post;
 use App\Models\Integra\Tag;
 use App\Models\Integra\Like;
+use App\Models\Integra\Comment;
 use Carbon\Carbon;
 
 class IntegraController extends Controller
@@ -88,6 +89,38 @@ class IntegraController extends Controller
 
         Session::flash('mensagem', 'POSTAGEM DELETADA COM SUCESSO');
         return redirect()->route('integra'); 
+    }
+
+    public function comment($id_post)
+    {
+        $comments = Comment::where('ID_POST', $id_post)->orderBy('DT_COMENTARIO')->get();
+        return view('Integra.comment')
+               ->with('comments', $comments)
+               ->with('id_post', $id_post);
+    }
+
+    
+    public function saveComment(Request $request)
+    {
+      DB::transaction(function() use ($request) {
+        if($request->param1 == TRUE) {
+          $comment = new Comment;
+          $comment->rep001s_id       = $request->param1;
+          $comment->users_id         = auth()->user()->id;
+          $comment->comment          = $request->param2;
+          $comment->create_at        = date('Y-m-d H:i:s');
+          $comment->save();
+        }
+      });
+
+      $id_post = $request->param1;
+      $comments = Comment::whereDate('create_at', date('Y-m-d'))
+                                 ->where('rep001s_id', $id_post)
+                                 ->where('users_id', auth()->user()->id)
+                                 ->get();
+		  return view('Intranet.integra.comentario')
+             ->with('comments', $comments)
+             ->with('id_post', $id_post);
     }
 }
 
