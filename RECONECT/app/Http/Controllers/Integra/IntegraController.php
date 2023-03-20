@@ -80,15 +80,16 @@ class IntegraController extends Controller
     public function deletePost(Request $request)
     {
         DB::transaction(function() use ($request) {
-            if($request->param1 == TRUE) {
-                DB::table('rep001s')
-                    ->where('id', $request->param1)
-                    ->delete();
-            }   
+            $postDelete = Post::find($request->param1);
+            $postDeleteJson = json_decode($postDelete);
+                if($postDeleteJson->users_id == auth()->user()->id) {
+                    $postDelete->delete(); 
+                } else {
+                    echo "eroo";
+                }
         });
 
-        Session::flash('mensagem', 'POSTAGEM DELETADA COM SUCESSO');
-        return redirect()->route('integra'); 
+        return redirect()->route('integra');
     }
 
     public function comment($id_post)
@@ -102,25 +103,25 @@ class IntegraController extends Controller
     
     public function saveComment(Request $request)
     {
-      DB::transaction(function() use ($request) {
-        if($request->param1 == TRUE) {
-          $comment = new Comment;
-          $comment->rep001s_id       = $request->param1;
-          $comment->users_id         = auth()->user()->id;
-          $comment->comment          = $request->param2;
-          $comment->create_at        = date('Y-m-d H:i:s');
-          $comment->save();
-        }
-      });
+        DB::transaction(function() use ($request) {
+            if($request->param1 == TRUE) {
+                $comment = new Comment;
+                $comment->rep001s_id       = $request->param1;
+                $comment->users_id         = auth()->user()->id;
+                $comment->comment          = $request->param2;
+                $comment->create_at        = date('Y-m-d H:i:s');
+                $comment->save();
+            }
+        });
 
-      $id_post = $request->param1;
-      $comments = Comment::whereDate('create_at', date('Y-m-d'))
-                                 ->where('rep001s_id', $id_post)
-                                 ->where('users_id', auth()->user()->id)
-                                 ->get();
-		  return view('Intranet.integra.comentario')
-                 ->with('comments', $comments)
-                 ->with('id_post', $id_post);
+        $id_post = $request->param1;
+        $comments = Comment::whereDate('create_at', date('Y-m-d'))
+                            ->where('rep001s_id', $id_post)
+                            ->where('users_id', auth()->user()->id)
+                            ->get();
+		return view('Intranet.integra.comentario')
+               ->with('comments', $comments)
+               ->with('id_post', $id_post);
     }
 }
 
