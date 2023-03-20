@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="social-body">
-            <p>
+            <p align="center">
                 <img class="img-fluid" 
                      alt="image"
                      src="img/post/{{ $post->message }}">
