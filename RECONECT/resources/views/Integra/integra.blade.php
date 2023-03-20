@@ -47,8 +47,8 @@
             <div class="media-body">
                 <a><b>Criado por</b>: {{ $post->userPost->name }}</a>
                     <small class="text-muted">{{ date('d/m/y H:i:s', strtotime($post->created_at)) }} - {{ $post->tagPost->tag_name }}</small>
-                    <a><i class="glyphicon glyphicon-trash mao pull-right text-danger m-l" 
-                       onclick="delete_post('{{ $post->id }}')"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a><i class="glyphicon glyphicon-trash mao pull-right text-danger m-l" 
+                              onclick="delete_post('{{ $post->id }}')"></i></a>&nbsp;&nbsp;&nbsp;
             </div>
         </div>
         <div class="social-body">

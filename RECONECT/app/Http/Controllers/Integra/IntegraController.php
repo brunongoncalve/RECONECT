@@ -80,16 +80,17 @@ class IntegraController extends Controller
     public function deletePost(Request $request)
     {
         DB::transaction(function() use ($request) {
+            $erro = "erro";
             $postDelete = Post::find($request->param1);
             $postDeleteJson = json_decode($postDelete);
                 if($postDeleteJson->users_id == auth()->user()->id) {
                     $postDelete->delete(); 
                 } else {
-                    echo "eroo";
+                    return redirect()->route('integra')->with("erro", $erro);
                 }
         });
 
-        return redirect()->route('integra');
+        return redirect()->route('integra')->with("erro", $erro);
     }
 
     public function comment($id_post)
