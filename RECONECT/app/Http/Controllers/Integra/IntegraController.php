@@ -120,7 +120,7 @@ class IntegraController extends Controller
                             ->where('rep001s_id', $id_post)
                             ->where('users_id', auth()->user()->id)
                             ->get();
-		return view('Intranet.integra.comentario')
+		return view('integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
     }

@@ -88,8 +88,6 @@ function delete_post(id)
 {
     requisicao('{{ route('delete_post') }}', 'POST', id)
     .then(result => {
-        console.log(result);
-        $('#error').html(result); 
 
 }).catch(error =>{
 console.log(error);
