@@ -96,7 +96,7 @@ class IntegraController extends Controller
     public function comment($id_post)
     {
         $comments = Comment::where('ID_POST', $id_post)->orderBy('DT_COMENTARIO')->get();
-        return view('Integra.comment')
+        return view('livewire.comentario')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
     }
@@ -123,6 +123,13 @@ class IntegraController extends Controller
 		return view('integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
+    }
+
+    public function integra2()
+    {
+        $data = Post::whereYear('created_at', date('Y'))->where('status', 1)->orderBy('created_at', 'desc')->get();
+        return view('Integra.integra2')
+               ->with('data', $data);
     }
 }
 
