@@ -95,13 +95,12 @@ class IntegraController extends Controller
 
     public function comment($id_post)
     {
-        $comments = Comment::where('ID_POST', $id_post)->orderBy('DT_COMENTARIO')->get();
-        return view('livewire.comentario')
+        $comments = Comment::where('rep001s_id', $id_post)->orderBy('created_at')->get();
+        return view('Integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
     }
 
-    
     public function saveComment(Request $request)
     {
         DB::transaction(function() use ($request) {
@@ -110,26 +109,18 @@ class IntegraController extends Controller
                 $comment->rep001s_id       = $request->param1;
                 $comment->users_id         = auth()->user()->id;
                 $comment->comment          = $request->param2;
-                $comment->create_at        = date('Y-m-d H:i:s');
                 $comment->save();
             }
         });
 
         $id_post = $request->param1;
-        $comments = Comment::whereDate('create_at', date('Y-m-d'))
+        $comments = Comment::whereDate('updated_at', date('Y-m-d'))
                             ->where('rep001s_id', $id_post)
                             ->where('users_id', auth()->user()->id)
                             ->get();
 		return view('integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
-    }
-
-    public function integra2()
-    {
-        $data = Post::whereYear('created_at', date('Y'))->where('status', 1)->orderBy('created_at', 'desc')->get();
-        return view('Integra.integra2')
-               ->with('data', $data);
     }
 }
 

@@ -27,6 +27,6 @@ class Post extends Model
 
     public function commentPost()
     {
-        return $this->hasMany('App\Models\Integra\Comment','rep001s_id','rep001s');
+        return $this->hasMany('App\Models\Integra\Comment','rep001s_id','id');
     }
 }
