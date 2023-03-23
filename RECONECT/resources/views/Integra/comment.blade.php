@@ -18,15 +18,14 @@
         <a href="#" class="float-left">
             <img class="rounded-circle" 
                  alt="image" 
-                 src="{{ asset($comment->userComment->photo) }}">
+                 src="img/profile/{{ $comment->userComment->photo }}">
         </a>
         <div class="media-body">
             <a href="#">
                 {{ $comment->userComment->name }}
             </a><br>
                 {!! $comment->comment  !!}
-            <a onclick="deleteComent('{{ $comment->id }}')">
-                <i class="glyphicon-trash mao pull-right text-danger m-1"></i>
+            <a onclick="deleteComent('{{ $comment->id }}')"><i class="glyphicon-trash mao pull-right text-danger m-1"></i>
             </a>
         </div>
     </div>
@@ -37,22 +36,22 @@
 @endif
 @endif
 
-<div id="salva_{{ $id_post }}"> 
+<div id="save_{{ $id_post }}"> 
     <div class="panel-footer">
-        <div class="form-group row" >
+        <div class="form-group row"> 
             <img class="rounded-circle" 
-                 src="{{ asset(auth()->user()->photo) }}" 
+                 src="img/profile/{{ auth()->user()->photo }}" 
                  style="max-height: 40px;" 
-                 alt="image">     
-            <div class="col-md-11">   
+                 alt="image">
+            <div class="col-md-11">                
                 <input class="form-control comment"
                        id="{{ $id_post }}" 
                        placeholder="Faça um comentario..."> 
             </div>
-        </div>    
-    </div>
+        </div>
+    </div>    
 </div>
- 
+
 <script>
 
 $('.comment').keypress(function(event) {
@@ -60,7 +59,9 @@ $('.comment').keypress(function(event) {
         if(keycode == '13') {
                requisicao('{{ route('save_comment') }}', 'POST', this.id,this.value)
                .then(result => {
-                    $('#salva_'+this.id).html(result); 
+                    $('#save_'+this.id).html(result); 
+                    let num_comment = document.getElementById(`num_comment_${this.id}`);
+                    num_comment.textContent = parseInt(num_comment.textContent) + 1;
 
                     }).catch(error => {
                         console.log(error);

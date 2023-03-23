@@ -17,7 +17,7 @@ class CreateRep004sTable extends Migration
             $table->increments('id');
             $table->foreignId('users_id')->constrained();
             $table->foreignId('rep001s_id')->constrained();
-            $table->text('comment')->constrained();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
