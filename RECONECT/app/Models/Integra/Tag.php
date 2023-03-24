@@ -9,4 +9,5 @@ class Tag extends Model
 {
     protected $table = 'rep002s';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 }

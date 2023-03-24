@@ -15,9 +15,9 @@ class CreateRep003sTable extends Migration
     {
         Schema::create('rep003s', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('rep001s_id')->constrained();
-            $table->timestamps();
+            $table->integer('users_id');
+            $table->integer('rep001s_id');
+            $table->date('date_like')->nullable();
         });
     }
 
