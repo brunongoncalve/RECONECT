@@ -25,8 +25,11 @@
                 {{ $comment->userComment->name }}
             </a><br>
                 {!! $comment->comment  !!}
-            <a onclick="deleteComent('{{ $comment->id }}')"><i class="glyphicon-trash mao pull-right text-danger m-1"></i>
-            </a>
+            @if($comment->users_id == auth()->user()->id)    
+                <a onclick="deleteComment('{{ $comment->id }}', '{{ $id_post }}')">
+                    <i class="fa fa-trash-o pull-right text-danger"></i>
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -69,4 +72,16 @@ $('.comment').keypress(function(event) {
         }
 });
 
+function deleteComment(id_comment, id_post)
+{
+    requisicao('{{ route('delete_comment') }}', 'POST', id_comment, id_post)
+    .then(result => {
+        $('#save_'+id_post).html(result); 
+        let num_comment = document.getElementById(`num_comment_${id_post}`);
+        num_comment.textContent = parseInt(num_comment.textContent) - 1;
+
+}).catch(error => {
+    console.log(error);
+}); 
+}
 </script>

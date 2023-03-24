@@ -15,9 +15,9 @@ class CreateRep002sTable extends Migration
     {
         Schema::create('rep002s', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('users_id')->constrained();
+            $table->integer('users_id');
             $table->string('tag_name')->nullable();
-            $table->timestamps();
+            $table->date('date_tag')->nullable();
         });
     }
 

@@ -9,6 +9,7 @@ class Post extends Model
 {
     protected $table = 'rep001s';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     public function userPost()
     {

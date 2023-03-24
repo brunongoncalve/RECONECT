@@ -15,11 +15,11 @@ class CreateRep001sTable extends Migration
     {
         Schema::create('rep001s', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('rep002s_id')->constrained();
+            $table->integer('users_id');
+            $table->integer('rep002s_id');
             $table->string('message')->nullable();
             $table->integer('status')->nullable();
-            $table->timestamps();
+            $table->date('date_post')->nullable();
         });
     }
 

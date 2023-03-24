@@ -16,7 +16,7 @@ class IntegraController extends Controller
 {
     public function index()
     {
-        $data = Post::whereYear('created_at', date('Y'))->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $data = Post::whereYear('date_post', date('Y'))->where('status', 1)->orderBy('date_post', 'desc')->get();
         return view('Integra.integra')
                ->with('data', $data);
     }
@@ -44,6 +44,7 @@ class IntegraController extends Controller
 
                 $post->rep002s_id = $request->tag_id;
                 $post->status = 1;
+                $post->date_post = date('Y-m-d H:i:s');
                 $post->save();
             }
         });
@@ -80,22 +81,25 @@ class IntegraController extends Controller
     public function deletePost(Request $request)
     {
         DB::transaction(function() use ($request) {
-            $erro = "erro";
-            $postDelete = Post::find($request->param1);
+            $postDelete = Post::find($request->btn_delete_post);
             $postDeleteJson = json_decode($postDelete);
                 if($postDeleteJson->users_id == auth()->user()->id) {
                     $postDelete->delete(); 
+
+                    Session::flash('mensagem1', 'POSTAGEM DELETADA COM SUCESSO');
+                    return redirect()->route('integra');
                 } else {
-                    return redirect()->route('integra')->with("erro", $erro);
+                    Session::flash('mensagem2', 'VOCE NAO TEM ACESSO A DELETAR ESSA POSTAGEM');
+                    return redirect()->route('integra');
                 }
         });
 
-        return redirect()->route('integra')->with("erro", $erro);
+        return redirect()->route('integra');
     }
 
     public function comment($id_post)
     {
-        $comments = Comment::where('rep001s_id', $id_post)->orderBy('created_at')->get();
+        $comments = Comment::where('rep001s_id', $id_post)->orderBy('date_comment')->get();
         return view('Integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
@@ -109,16 +113,40 @@ class IntegraController extends Controller
                 $comment->rep001s_id       = $request->param1;
                 $comment->users_id         = auth()->user()->id;
                 $comment->comment          = $request->param2;
+                $comment->date_comment     = date('Y-m-d H:i:s');
                 $comment->save();
             }
         });
 
         $id_post = $request->param1;
-        $comments = Comment::whereDate('updated_at', date('Y-m-d'))
-                            ->where('rep001s_id', $id_post)
-                            ->where('users_id', auth()->user()->id)
-                            ->get();
+        $comments = Comment::whereDate('date_comment', date('Y-m-d'))
+                             ->where('rep001s_id', $id_post)
+                             ->where('users_id', auth()->user()->id)
+                             ->get();
 		return view('integra.comment')
+               ->with('comments', $comments)
+               ->with('id_post', $id_post);
+    }
+
+    public function deleteComment(Request $request) 
+    {
+        DB::transaction(function() use ($request) {
+            $deleteComments = Comment::find($request->param1);
+            $deleteComment = json_decode($deleteComments);
+                if($deleteComment->users_id == auth()->user()->id) {
+                    DB::table('rep004s')
+                        ->where('rep001s_id', $request->param2)
+                        ->where('users_id', auth()->user()->id)
+                        ->delete();
+                }
+        });
+    
+        $id_post = $request->param2;
+        $comments = Comment::whereDate('date_comment', date('Y-m-d'))
+                             ->where('rep001s_id', $id_post)
+                             ->where('users_id', auth()->user()->id)
+                             ->get();
+        return view('integra.comment')
                ->with('comments', $comments)
                ->with('id_post', $id_post);
     }

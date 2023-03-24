@@ -15,10 +15,10 @@ class CreateRep004sTable extends Migration
     {
         Schema::create('rep004s', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('rep001s_id')->constrained();
+            $table->integer('users_id');
+            $table->integer('rep001s_id');
             $table->text('comment')->nullable();
-            $table->timestamps();
+            $table->date('date_comment')->nullable();
         });
     }
 

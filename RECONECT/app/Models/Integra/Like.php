@@ -9,4 +9,5 @@ class Like extends Model
 {
     protected $table = 'rep003s';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 }

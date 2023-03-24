@@ -9,6 +9,7 @@ class Comment extends Model
 {
     protected $table = 'rep004s';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     public function userComment()
     {

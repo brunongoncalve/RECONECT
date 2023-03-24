@@ -69,7 +69,7 @@
    class="btn btn-success block full-width m-b">Registre-se
 </a>
 
-<p class="m-t"> <small>Reconect Company &copy; 2022</small></p>
+<p class="m-t"> <small>Reconect Company &copy; {{ date('Y') }}</small></p>
 
 </div>
 </div>
