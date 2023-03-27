@@ -6,6 +6,10 @@
 .form-control {
     border-radius: 10px;
 }
+
+.hide {
+    display: none;
+}
 </style>
 
 @if($comments)
@@ -13,7 +17,7 @@
 
 @foreach($comments as $comment)
 
-<div class="social-footer">
+<div class="social-footer" id="div_comment_{{ $comment->id }}">
     <div class="social-comment">
         <a href="#" class="float-left">
             <img class="rounded-circle" 
@@ -74,14 +78,21 @@ $('.comment').keypress(function(event) {
 
 function deleteComment(id_comment, id_post)
 {
-    requisicao('{{ route('delete_comment') }}', 'POST', id_comment, id_post)
-    .then(result => {
-        $('#save_'+id_post).html(result); 
-        let num_comment = document.getElementById(`num_comment_${id_post}`);
-        num_comment.textContent = parseInt(num_comment.textContent) - 1;
+    if(confirm("DESEJA RELAMENTE EXCLUIR ESSE COMENTARIO ?")) {
+        requisicao('{{ route('delete_comment') }}', 'POST', id_comment, id_post)
+        .then(result => {
+            $('#save_'+id_post).html(result);
+            let num_comment = document.getElementById(`num_comment_${id_post}`);
+            num_comment.textContent = parseInt(num_comment.textContent) - 1;
+            let div = document.getElementById(`div_comment_${id_comment}`);
+            div.innerText = "";
 
-}).catch(error => {
-    console.log(error);
-}); 
+        }).catch(error => {
+            console.log(error);
+        }); 
+    } else {
+        return false;
+    }
 }
+
 </script>

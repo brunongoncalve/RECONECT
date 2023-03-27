@@ -88,9 +88,6 @@ class IntegraController extends Controller
 
                     Session::flash('mensagem1', 'POSTAGEM DELETADA COM SUCESSO');
                     return redirect()->route('integra');
-                } else {
-                    Session::flash('mensagem2', 'VOCE NAO TEM ACESSO A DELETAR ESSA POSTAGEM');
-                    return redirect()->route('integra');
                 }
         });
 
@@ -140,15 +137,9 @@ class IntegraController extends Controller
                         ->delete();
                 }
         });
-    
-        $id_post = $request->param2;
-        $comments = Comment::whereDate('date_comment', date('Y-m-d'))
-                             ->where('rep001s_id', $id_post)
-                             ->where('users_id', auth()->user()->id)
-                             ->get();
-        return view('integra.comment')
-               ->with('comments', $comments)
-               ->with('id_post', $id_post);
+
+        $mensagem = '<div class="alert alert-success"><p align="center">Comentario deletado com sucesso.</p></div>';
+		return $mensagem; 
     }
 }
 

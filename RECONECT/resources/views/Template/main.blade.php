@@ -53,24 +53,24 @@
                             </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            BR
                         </div>
                     </li>
                         <li>
-                        <a href="#"><i class="fa fa-birthday-cake"></i> <span class="nav-label">ANIVERSARIANTES</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-birthday-cake"></i> <span class="nav-label">Aniversariantes</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('birthday') }}">Lista de Aniversariantes</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">MENU</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Menu</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
                           <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">RECURSOS</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Recursos</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('registration_group') }}">Cadastro de grupo</a></li>
                           <li><a href="{{ route('registration_status') }}">Cadastro status</a></li>
@@ -80,7 +80,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-male"></i> <span class="nav-label">PORTARIA</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-male"></i> <span class="nav-label">Portaria</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('managers') }}">Gestores</a></li>
                         </ul>
