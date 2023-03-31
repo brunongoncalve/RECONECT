@@ -46,6 +46,7 @@ Route::controller(IntegraController::class)->group(function() {
     Route::post('/comment/{id_post}', 'comment')->name('comment')->middleware(Seguranca::class);
     Route::post('/save_comment', 'saveComment')->name('save_comment')->middleware(Seguranca::class);
     Route::post('/delete_comment', 'deleteComment')->name('delete_comment')->middleware(Seguranca::class);
+    Route::post('/load_like_/{id_post}', 'loadLike')->name('load_like')->middleware(Seguranca::class);
 });
 
 Route::controller(RegistrationTagController::class)->group(function() {

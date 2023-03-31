@@ -141,5 +141,12 @@ class IntegraController extends Controller
         $mensagem = '<div class="alert alert-success"><p align="center">Comentario deletado com sucesso.</p></div>';
 		return $mensagem; 
     }
+
+    public function loadLike($id_post)
+    {
+        $loadLike = Like::where('rep001s_id', $id_post)->orderBy('date_like')->get();
+        return view('Integra.load_like')
+               ->with('loadLike', $loadLike);
+    }
 }
 

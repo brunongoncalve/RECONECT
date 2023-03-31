@@ -74,18 +74,18 @@
                      src="img/post/{{ $post->message }}">
             </p>
                 <div class="btn-group"> 
-                    <div class="panel-footer">
-                        <div class="form-group row">
+                     <div class="form-group d-flex">
+                        <div class="d-flex">
                             <a onclick="loadLike('{{ $post->id }}')"><i class="fa fa-users"></i></a>
                             <div class="col-md-2">
                                 <a onclick="like('{{ $post->id }}')"><i class="fa fa-heart"></i></a>
-                            <div>
+                            </div>
                             <div class="ml-1"
-                                 id="like_{{ $post->id }}">@if($post->likePost){{ $post->likePost->count() }}@endif
-                            </div> |
-                            <div class="col-md-1">
+                                 id="like_{{ $post->id }}">@if($post->likePost){{ $post->likePost->count() }}@endif</div>
+                        </div>|         
+                            <div class="d-flex ml-3">
                                 <a onclick="comment('{{ $post->id }}')"><i class="fa fa-comment"></i></a>
-                            <div class="col-md-1" 
+                            <div class="ml-2"
                                  id="num_comment_{{ $post->id }}">@if($post->commentPost){{ $post->commentPost->count() }}@endif
                             </div>
                         </div>                            
@@ -94,7 +94,7 @@
             </div>
         </div>
  <div>
-        <div id="comment_{{ $post->id }}"></div><br> 
+        <div id="comment_{{ $post->id }}"></div> 
         <div id="load_like_{{ $post->id }}"></div>      
     @endforeach 
     
@@ -122,7 +122,7 @@ function comment(id_post)
 
 function loadLike(id_post)
 {
-    listaJS('load_like_'+id_post,'comment/'+id_post, 'POST');
+    listaJS('load_like_'+id_post,'load_like_/'+id_post, 'POST');
 }
 
 </script>
