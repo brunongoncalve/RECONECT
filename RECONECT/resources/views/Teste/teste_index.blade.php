@@ -4,20 +4,18 @@
 
 @section('content')
 
-<form action="{{ route('teste') }}" 
+<form action="{{ route('export') }}" 
       method="POST" 
       enctype='multipart/form-data'>
-    @csrf  
+    @csrf
+
+<input type="date" name="bruno" id="bruno" value="{{ old('bruno') }}" > 
+
     
-<input type="file" 
-       id="file" 
-       name="file">
-<button type="submit" 
-        id="BTN" 
-        name="BTN"> ENVIAR 
-</button>     
+<button type="submit"> TESTE </button>     
 
 </form>
+
 
 @endsection
 

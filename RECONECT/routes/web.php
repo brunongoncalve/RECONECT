@@ -95,6 +95,8 @@ Route::controller(BirthdayController::class)->group(function() {
 Route::controller(TesteController::class)->group(function() {
     Route::get('/teste', 'index')->name('teste')->middleware(Seguranca::class);
     Route::post('/teste', 'store')->name('teste')->middleware(Seguranca::class);
+    Route::get('export', 'export')->name('export')->middleware(Seguranca::class);
+    Route::post('export', 'export')->name('export')->middleware(Seguranca::class);
 });
 
 Route::controller(ManagersController::class)->group(function() {

@@ -24,9 +24,7 @@
       action="{{ route('login')}}" 
       method="POST">
     @csrf
-                
-<h1 class="logo-name">BT</h1>
-                
+                                
 </div>
     <h4 class="h1-registro">Bem vindo</h4>
         <h5>Realize seu login.</h5>
