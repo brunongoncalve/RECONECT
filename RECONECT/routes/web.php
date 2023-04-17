@@ -14,6 +14,8 @@ use App\Http\Controllers\Registration\RegistrationTagController;
 use App\Http\Controllers\RH\BirthdayController;
 use App\Http\Controllers\Teste\TesteController;
 use App\Http\Controllers\Ordinance\ManagersController;
+use App\Http\Controllers\Impressions\ImpressionsController;
+use App\Http\Controllers\Registration\RegistrationPrinterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +78,11 @@ Route::controller(RegistrationUserController::class)->group(function() {
     Route::post('/profile', 'alterPhoto')->name('profile')->middleware(Seguranca::class);
 });
 
+Route::controller(RegistrationPrinterController::class)->group(function() {
+    Route::get('/registration_printer', 'index')->name('registration_printer')->middleware(Seguranca::class);
+    Route::post('/registration_printer', 'store')->name('registration_printer')->middleware(Seguranca::class);
+});
+
 Route::controller(ResourceController::class)->group(function() {
     Route::get('/movement_resources', 'index')->name('movement_resources')->middleware(Seguranca::class);
     Route::get('/select_item', 'selectItem')->name('select_item')->middleware(Seguranca::class);
@@ -105,5 +112,9 @@ Route::controller(ManagersController::class)->group(function() {
     Route::get('/select_manager', 'selectManager')->name('select_manager')->middleware(Seguranca::class);
     Route::post('/managers', 'saveEntryExit')->name('managars')->middleware(Seguranca::class);
     Route::get('/managers', 'flowDay')->name('managers')->middleware(Seguranca::class);
+});
+
+Route::controller(ImpressionsController::class)->group(function() {
+    Route::get('/impressions', 'index')->name('impressions')->middleware(Seguranca::class);
 });
 
