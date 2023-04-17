@@ -56,6 +56,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
                                 <label>VEICULO:</label>
                                      <input type="button"
+                                            style="display: none"
                                             class="form-control"
                                             name="id_car"
                                             id="id_car">
