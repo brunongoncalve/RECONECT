@@ -65,6 +65,7 @@
                     <li>
                         <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Menu</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
+                          <li><a href="{{ route('registration_printer') }}">Cadastro de Impressora</a></li>
                           <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
                           <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                         </ul>
@@ -83,6 +84,12 @@
                         <a href="#"><i class="fa fa-male"></i> <span class="nav-label">Portaria</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('managers') }}">Gestores</a></li>
+                        </ul>
+                    </li>
+                      <li>
+                        <a href="#"><i class="fa fa-male"></i> <span class="nav-label">Relatorio</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                          <li><a href="{{ route('impressions') }}">Impressões</a></li>
                         </ul>
                     </li>
 
