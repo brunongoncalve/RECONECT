@@ -66,6 +66,7 @@
                         <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Menu</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                           <li><a href="{{ route('registration_printer') }}">Cadastro de Impressora</a></li>
+                          <li><a href="{{ route('registration_impressions') }}">Cadastro de Impressões</a></li>
                           <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
                           <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                         </ul>

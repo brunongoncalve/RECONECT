@@ -1,17 +1,17 @@
 @extends('Template.main')
 
-@section('title', 'Reconect | Cadastro de Impressora')
+@section('title', 'Reconect | Cadastro de Impressões')
 
 @section('content')
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Cadastro de Impressoras</h2>
+        <h2>Cadastro de Impressões</h2>
     </div>
 </div><br>
 
         <form class="m-t" 
-              action="{{ route('registration_printer') }}"
+              action="{{ route('registration_impressions') }}"
               enctype="multipart/form-data"
               method="POST">
             @csrf
@@ -26,13 +26,33 @@
                     <div class="ibox ">
                         <div class="ibox-content">
                             <div class="form-group">
-                                <label class="font-normal">NOME DA IMPRESSORA:</label>
+                                <label class="font-normal">IMPRESSORA:</label>
+                                    <select class="form-control m-b" 
+                                            name="status" 
+                                            id="status">
+                                                <option></option>
+                                                    @foreach($printer as $printer) 
+                                                        <option value="{{ $printer->id }}">{{ $printer->id }} - {{ $printer->name_printer }}</option>
+                                                    @endforeach
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-normal">QUANTIDADE DE IMPRESSÕES COLORIDAS:</label>
                                     <div class="input-group">
-                                        <input type="text" 
+                                        <input type="number" 
                                                class="form-control"
-                                               id="name_printer"
-                                               name="name_printer">
-                                    </div>
+                                               id="color_prints"
+                                               name="color_prints">
+                                    </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="font-normal">QUANTIDADE DE IMPRESSÕES PRETO E BRANCO:</label>
+                                    <div class="input-group">
+                                        <input type="number" 
+                                               class="form-control"
+                                               id="black_prints"
+                                               name="black_prints">
+                                    </div> 
                             </div>
                             <button type="submit" 
                                     class="btn btn-primary block full-width m-b">Salvar

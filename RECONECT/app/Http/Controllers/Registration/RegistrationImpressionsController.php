@@ -6,24 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\Registration\Impression;
 use App\Models\Registration\Printer;
 
-class RegistrationPrinterController extends Controller
+class RegistrationImpressionsController extends Controller
 {
     public function index()
     {
-        return view('Registration.printer_index');
+        $printer = Printer::all();
+        return view('Registration.impressions_index')
+               ->with('printer', $printer);
     }
 
     public function store(Request $request)
     {
         DB::transaction(function() use ($request) {
-            $printer = new Printer;
+            $impression = new Impression;
 
-            $printer->name_printer   = $request->name_printer;
-            $printer->status         = 1;
-            $printer->date_create    = date('Y-m-d H:i:s');
-            $printer->save();
+            $impression->name_printer    = $request->name_printer;
+            $impression->status          = 1;
+            $impression->date_create     = date('Y-m-d H:i:s');
+            $impression->save();
         });
     
         Session::flash('mensagem', 'CADASTRO REALIZADO COM SUCESSO');

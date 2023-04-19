@@ -14,8 +14,8 @@ use App\Http\Controllers\Registration\RegistrationTagController;
 use App\Http\Controllers\RH\BirthdayController;
 use App\Http\Controllers\Teste\TesteController;
 use App\Http\Controllers\Ordinance\ManagersController;
-use App\Http\Controllers\Impressions\ImpressionsController;
 use App\Http\Controllers\Registration\RegistrationPrinterController;
+use App\Http\Controllers\Registration\RegistrationImpressionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,11 @@ Route::controller(RegistrationUserController::class)->group(function() {
 Route::controller(RegistrationPrinterController::class)->group(function() {
     Route::get('/registration_printer', 'index')->name('registration_printer')->middleware(Seguranca::class);
     Route::post('/registration_printer', 'store')->name('registration_printer')->middleware(Seguranca::class);
+});
+
+Route::controller(RegistrationImpressionsController::class)->group(function() {
+    Route::get('/registration_impressions', 'index')->name('registration_impressions')->middleware(Seguranca::class);
+    Route::post('/registration_impressions', 'store')->name('registration_impressions')->middleware(Seguranca::class);
 });
 
 Route::controller(ResourceController::class)->group(function() {
