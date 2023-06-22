@@ -119,7 +119,7 @@ Route::controller(ManagersController::class)->group(function() {
     Route::get('/managers', 'flowDay')->name('managers')->middleware(Seguranca::class);
 });
 
-Route::controller(ImpressionsController::class)->group(function() {
+Route::controller(RegistrationImpressionsController::class)->group(function() {
     Route::get('/impressions', 'index')->name('impressions')->middleware(Seguranca::class);
 });
 
