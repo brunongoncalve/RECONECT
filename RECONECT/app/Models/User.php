@@ -26,11 +26,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function lastCar()
-    {
-        return $this->hasMany('App\Models\Ordinance\Manager', 'id', 'id')->orderby('id', 'desc')->first();
-    } 
-
     /**
      * The attributes that should be hidden for serialization.
      *
