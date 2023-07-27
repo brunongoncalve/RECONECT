@@ -8,7 +8,6 @@ use App\Http\Controllers\Integra\IntegraController;
 use App\Http\Controllers\Registration\RegistrationUserController;
 use App\Http\Controllers\Registration\RegistrationTagController;
 use App\Http\Controllers\RH\BirthdayController;
-use App\Http\Controllers\SS\TecnologiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,9 +57,5 @@ Route::controller(RegistrationUserController::class)->group(function() {
 
 Route::controller(BirthdayController::class)->group(function() {
     Route::get('/birthday', 'index')->name('birthday')->middleware(Seguranca::class);
-});
-
-Route::controller(TecnologiaController::class)->group(function() {
-    Route::get('/called', 'index')->name('called')->middleware(Seguranca::class);
 });
 

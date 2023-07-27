@@ -69,12 +69,6 @@
                                 <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Sol. Serviços T.I</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li><a href="{{ route('called') }}">Abertuta de chamados</a></li>
-                            </ul>
-                    </li>
 
             </div>
         </nav> 
