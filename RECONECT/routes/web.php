@@ -5,17 +5,10 @@ use App\Http\middleware\Seguranca;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\Integra\IntegraController;
-use App\Http\Controllers\Registration\RegistrationItemController;
-use App\Http\Controllers\Movement_resources\ResourceController;
-use App\Http\Controllers\Registration\RegistrationGroupController;
-use App\Http\Controllers\Registration\RegistrationStatusController;
 use App\Http\Controllers\Registration\RegistrationUserController;
 use App\Http\Controllers\Registration\RegistrationTagController;
 use App\Http\Controllers\RH\BirthdayController;
-use App\Http\Controllers\Teste\TesteController;
-use App\Http\Controllers\Ordinance\ManagersController;
-use App\Http\Controllers\Impressions\ImpressionsController;
-use App\Http\Controllers\Registration\RegistrationPrinterController;
+use App\Http\Controllers\SS\TecnologiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,21 +49,6 @@ Route::controller(RegistrationTagController::class)->group(function() {
     Route::post('/registration_tag', 'store')->name('registration_tag')->middleware(Seguranca::class);
 });
 
-Route::controller(RegistrationItemController::class)->group(function() {
-    Route::get('/registration_item', 'index')->name('registration_item')->middleware(Seguranca::class);
-    Route::post('/registration_item', 'store')->name('registration_item')->middleware(Seguranca::class);
-});
-
-Route::controller(RegistrationGroupController::class)->group(function() {
-    Route::get('/registration_group', 'index')->name('registration_group')->middleware(Seguranca::class);
-    Route::post('/registration_group', 'store')->name('registration_group')->middleware(Seguranca::class);
-});
-
-Route::controller(RegistrationStatusController::class)->group(function() {
-    Route::get('/registration_status', 'index')->name('registration_status')->middleware(Seguranca::class);
-    Route::post('/registration_status', 'store')->name('registration_status')->middleware(Seguranca::class);
-});
-
 Route::controller(RegistrationUserController::class)->group(function() {
     Route::get('/registration_user', 'index')->name('registration_user')->middleware(Seguranca::class);
     Route::post('/registration_user', 'store')->name('registration_user')->middleware(Seguranca::class);
@@ -78,43 +56,11 @@ Route::controller(RegistrationUserController::class)->group(function() {
     Route::post('/profile', 'alterPhoto')->name('profile')->middleware(Seguranca::class);
 });
 
-Route::controller(RegistrationPrinterController::class)->group(function() {
-    Route::get('/registration_printer', 'index')->name('registration_printer')->middleware(Seguranca::class);
-    Route::post('/registration_printer', 'store')->name('registration_printer')->middleware(Seguranca::class);
-});
-
-Route::controller(ResourceController::class)->group(function() {
-    Route::get('/movement_resources', 'index')->name('movement_resources')->middleware(Seguranca::class);
-    Route::get('/select_item', 'selectItem')->name('select_item')->middleware(Seguranca::class);
-    Route::get('/select_item_out', 'selectItemOut')->name('select_item_out')->middleware(Seguranca::class);
-    Route::post('/movement_resources', 'exitItem')->name('movement_resources')->middleware(Seguranca::class);
-    Route::get('/resources_report', 'resourcesReport')->name('resources_report')->middleware(Seguranca::class);
-    Route::get('/load_user', 'loadUser')->name('load_user')->middleware(Seguranca::class);
-    Route::get('/select_user', 'selectUser')->name('select_user')->middleware(Seguranca::class);
-    Route::get('/select_user_out', 'selectUserOut')->name('select_user_out')->middleware(Seguranca::class);
-    Route::get('/load_user_out', 'loadUserOut')->name('load_user_out')->middleware(Seguranca::class);
-});
-
 Route::controller(BirthdayController::class)->group(function() {
     Route::get('/birthday', 'index')->name('birthday')->middleware(Seguranca::class);
 });
 
-Route::controller(TesteController::class)->group(function() {
-    Route::get('/teste', 'index')->name('teste')->middleware(Seguranca::class);
-    Route::post('/teste', 'store')->name('teste')->middleware(Seguranca::class);
-    Route::get('export', 'export')->name('export')->middleware(Seguranca::class);
-    Route::post('export', 'export')->name('export')->middleware(Seguranca::class);
-});
-
-Route::controller(ManagersController::class)->group(function() {
-    Route::get('/managers', 'index')->name('managers')->middleware(Seguranca::class);
-    Route::get('/load_manager', 'loadManager')->name('load_manager')->middleware(Seguranca::class);
-    Route::get('/select_manager', 'selectManager')->name('select_manager')->middleware(Seguranca::class);
-    Route::post('/managers', 'saveEntryExit')->name('managars')->middleware(Seguranca::class);
-    Route::get('/managers', 'flowDay')->name('managers')->middleware(Seguranca::class);
-});
-
-Route::controller(ImpressionsController::class)->group(function() {
-    Route::get('/impressions', 'index')->name('impressions')->middleware(Seguranca::class);
+Route::controller(TecnologiaController::class)->group(function() {
+    Route::get('/called', 'index')->name('called')->middleware(Seguranca::class);
 });
 
