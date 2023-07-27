@@ -69,6 +69,12 @@
                                 <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
                             </ul>
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Portaria</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="{{ route('manager') }}">Gestores</a></li>
+                            </ul>
+                    </li>
 
             </div>
         </nav> 
