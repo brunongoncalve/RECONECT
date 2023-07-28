@@ -34,66 +34,85 @@
                                      src="{{ asset('img/default.jpg') }}" 
                                      alt="Avatar">
                         </div>
-                        <div class="col-md-8 col-xs-8 pull-right">
-                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback" style="display: none">
+                        <div class="col-md-4 col-xs-4 pull-left">
+                        <button type="button" 
+                                class="btn btn-success" 
+                                onclick="loadManager()" 
+                                name="btn_entrada" 
+                                id="btn_entrada" 
+                                value="ENTRADA">&nbsp;SELECIONE O GESTOR&nbsp;
+                        </button>
+                        <button type="button" 
+                                class="btn btn-success" 
+                                onclick="loadVehicle()"
+                                name="btn_entrada" 
+                                id="btn_entrada" 
+                                value="ENTRADA">&nbsp;SELECIONE O VEICULO&nbsp;
+                        </button>
+                        </div>  
+                        <div class="col-md-8 col-xs-6 pull-left">
+                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback" 
+                                 style="display: none">
                                 <label>COD.Func:</label>
                                     <input type="text" 
                                            class="form-control"  
                                            name="id" 
                                            id="id"  
                                            readonly>
+                            </div><br>
+                            <div class="form-group col-md-4" 
+                                 id="div_manager" 
+                                 name="div_manager" 
+                                 style="display: none">
+                                    <label>GESTOR:</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="name" 
+                                               id="name" 
+                                               readonly>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label>GESTOR:</label>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           name="name" 
-                                           id="name" 
-                                           placeholder="Selecione o gestor" 
-                                           readonly 
-                                           onclick="loadManager()">
+                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback" 
+                                 id="div_vehicle" 
+                                 name="div_vehicle" 
+                                 style="display: none">
+                                    <label>VEICULO:</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="vehicle" 
+                                               id="vehicle"
+                                               readonly>
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                <label>VEICULO:</label>
-                                     <input type="text" 
-                                            class="form-control" 
-                                            name="car" 
-                                            id="car">
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                <label>PLACA:</label>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           name="DN_PLACA" 
-                                           id="DN_PLACA">
-                                    <input type="hidden" 
-                                           class="form-control" 
-                                           name="ID_VEICULO_SAIDA" 
-                                           id="ID_VEICULO_SAIDA">
+                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback" 
+                                 id="div_plate" 
+                                 name="div_plate" 
+                                 style="display: none">
+                                    <label>PLACA:</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="plate" 
+                                               id="plate"
+                                               readonly>
+                                        <input type="hidden" 
+                                               class="form-control" 
+                                               name="id_vehicle" 
+                                               id="id_vehicle"
+                                               readonly>
                             </div>
                                 <div class="form-group">
                                     <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
                                         <a href="#" 
-                                           class="btn btn-primary"
+                                           class="btn btn-success"
                                            style="display: none"
-                                           id="btn_limpa"
-                                           name="btn_limpa">&nbsp;Limpar&nbsp;
+                                           id="btn_clean"
+                                           name="btn_clean">&nbsp;Limpar&nbsp;
                                         </a>
-                                        <button type="submit" 
-                                                class="btn btn-success" 
-                                                onclick="entrada('ENTRADA')" 
+                                        <button type="button" 
+                                                class="btn btn-primary" 
+                                                onclick="entry('ENTRY')" 
                                                 style="display: none" 
-                                                name="btn_entrada" 
-                                                id="btn_entrada" 
-                                                value="ENTRADA">&nbsp;Entrada&nbsp;
-                                        </button>
-                                        <button type="submit" 
-                                                class="btn btn-danger"  
-                                                onclick="entrada('SAIDA')"  
-                                                style="display: none" 
-                                                name="btn_saida" 
-                                                id="btn_saida" 
-                                                value="SAIDA">&nbsp;Saida&nbsp;
+                                                name="btn_entry" 
+                                                id="btn_entry" 
+                                                value="ENTRY">&nbsp;Entrar&nbsp;
                                         </button>
                                     </div>
                                 </div>
@@ -102,8 +121,7 @@
         <div class="clearfix"></div></div>
             <div class="x_content"><br><br>
                 <h3><strong>Fluxo do Dia</strong></h3><hr>
-
-                    <table id='TabFluxoDia' 
+                    <table id='TabFlowDay' 
                            class='table table-striped table-condensed  table-hover' 
                            cellspacing='0' 
                            width='100%'>
@@ -121,7 +139,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+                                    @foreach ($flow as $flow1)
+                                        <tr>
+                                            <td align='left'>{{ $flow1->id }}</td>
+                                            <td align='left'>{{ $flow1->users_id }}</td>
+                                            <td align='left'>{{ $flow1->car_in }}</td>
+                                            <td align='left'>{{ $flow1->plate_in }}</td>
+                                            <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_in)) }}</td>
+                                            <td align='left'>{{ $flow1->vehicle_flow }}</td>
+                                            <td align='left'>{{ $flow1->plate_out }}</td>
+                                            <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_out)) }}</td>
+                                            <td align='left'>{{ $flow1->responsible }}</td>
+                                        </tr>  
+                                    @endforeach
                                 </tbody>
                     </table>
             </div>
@@ -134,6 +164,22 @@
 @section('scripts')
 
 <script>
+
+$(document).ready(function() {
+    $('#TabFlowDay').DataTable({
+    "paging": true,
+    "responsive": true,
+    "processing": true,
+    "bAutoWidth": true,
+    "bDeferRender": true,
+    "bLengthChange": false,
+    "pageLength": 5,
+    "order": [0, 'desc'],
+
+        dom: "Bfrtip",
+        buttons: []
+    });
+});
 
 function loadManager(id)
 {
@@ -150,13 +196,55 @@ function selectManager(id)
             $('#photo').html("<img class='img-responsive avatar-view' src='img/profile/"+ result.photo +"'>");
             $('#id').val(result.id);
             $('#name').val(result.name);
-            //$('#DN_VEICULO').val(result.VEICULO_GESTOR.VEICULO_IN);
-            //$('#DN_PLACA').val(result.VEICULO_GESTOR.PLACA_IN);
-            //$('#ID_VEICULO_SAIDA').val(result.VEICULO_GESTOR.ID);
+            $('#div_manager').show('slow');
             $('#XModal').modal('hide');
 
 }).catch(error =>{
     console.log(error);
+}); 
+}
+
+function loadVehicle(id)
+{
+    $('#Xmod_titulo').html('<h3>SELECIONE O VEICULO:</h3>');
+    listaJS('Xmod_corpo', '{{ route('load_vehicle') }}','GET');
+}
+
+function selectVehicle(id)
+{
+    requisicao('{{ route('select_vehicle') }}','GET', id)
+    .then(result => { 
+        result = JSON.parse(result);
+            if(result.status == 1) {
+                $('#id_vehicle').val(result.id);
+                $('#vehicle').val(result.name_car);
+                $('#plate').val(result.plate);
+                $('#div_vehicle').show('slow');
+                $('#div_plate').show('slow');
+                $('#btn_entry').show('slow');
+                $('#btn_clean').show('slow');
+                $('#XModal').modal('hide');
+            } else if(result.status == 2){
+                alert('VEICULO DENTRO DA EMPRESA, REALIZE A SAIDA');
+            }
+
+}).catch(error =>{
+    console.log(error);
+}); 
+}
+
+function entry(action)
+{
+    const vehicle = $('#vehicle').val();
+    const plate = $('#plate').val();
+    const id = $('#id').val();
+    const id_vehicle = $('#id_vehicle').val();
+
+    requisicao('{{route('manager')}}','POST', vehicle,plate,id,id_vehicle,action)
+    .then(result => { 
+
+}).catch(error =>{
+console.log(error);
 }); 
 }
 

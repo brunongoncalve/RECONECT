@@ -7,6 +7,7 @@ use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\Integra\IntegraController;
 use App\Http\Controllers\Registration\RegistrationUserController;
 use App\Http\Controllers\Registration\RegistrationTagController;
+use App\Http\Controllers\Registration\RegistrationVehicleController;
 use App\Http\Controllers\RH\BirthdayController;
 use App\Http\Controllers\Concierge\ManagerController;
 
@@ -56,6 +57,11 @@ Route::controller(RegistrationUserController::class)->group(function() {
     Route::post('/profile', 'alterPhoto')->name('profile')->middleware(Seguranca::class);
 });
 
+Route::controller(RegistrationVehicleController::class)->group(function() {
+    Route::get('/registration_vehicle', 'index')->name('registration_vehicle')->middleware(Seguranca::class);
+    Route::post('/registration_vehicle', 'store')->name('registration_vehicle')->middleware(Seguranca::class);
+});
+
 Route::controller(BirthdayController::class)->group(function() {
     Route::get('/birthday', 'index')->name('birthday')->middleware(Seguranca::class);
 });
@@ -64,5 +70,9 @@ Route::controller(ManagerController::class)->group(function() {
     Route::get('/manager', 'index')->name('manager')->middleware(Seguranca::class);
     Route::get('/load_manager', 'loadManager')->name('load_manager')->middleware(Seguranca::class);
     Route::get('/select_manager', 'selectManager')->name('select_manager')->middleware(Seguranca::class);
+    Route::get('/load_vehicle', 'loadVehicle')->name('load_vehicle')->middleware(Seguranca::class);
+    Route::get('/select_vehicle', 'selectVehicle')->name('select_vehicle')->middleware(Seguranca::class);
+    Route::post('/manager', 'saveEntry')->name('manager')->middleware(Seguranca::class);
+    Route::get('/manager', 'flow')->name('manager')->middleware(Seguranca::class);
 });
 

@@ -5,9 +5,9 @@ namespace App\Models\Concierge;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manager extends Model
+class Vehicle extends Model
 {
-    protected $table = 'port001';
+    protected $table = 'port002';
     protected $primaryKey = 'id';
     public $timestamps = false;
 }

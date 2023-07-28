@@ -67,6 +67,7 @@
                             <ul class="nav nav-second-level collapse">
                                 <li><a href="{{ route('registration_user') }}">Cadastro de Usuarios</a></li>
                                 <li><a href="{{ route('registration_tag') }}">Cadastro de Tags</a></li>
+                                <li><a href="{{ route('registration_vehicle') }}">Cadastro de Veiculos</a></li>
                             </ul>
                     </li>
                     <li>

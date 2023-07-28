@@ -17,10 +17,10 @@ class CreatePort001Table extends Migration
             $table->increments('id');
             $table->foreignId('users_id')->constrained();
             $table->string('car_in')->nullable();
-            $table->string('sign_in')->nullable();
+            $table->string('plate_in')->nullable();
             $table->date('date_in')->nullable();
             $table->string('car_out')->nullable();
-            $table->string('sign_out')->nullable();
+            $table->string('plate_out')->nullable();
             $table->date('date_out')->nullable();
             $table->integer('responsible')->nullable();
             $table->integer('status')->nullable();
