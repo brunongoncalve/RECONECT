@@ -142,7 +142,7 @@
                                     @foreach ($flow as $flow1)
                                         <tr>
                                             <td align='left'>{{ $flow1->id }}</td>
-                                            <td align='left'>{{ $flow1->users_id }}</td>
+                                            <td align='left'>{{ $flow1->manager->name }}</td>
                                             <td align='left'>{{ $flow1->car_in }}</td>
                                             <td align='left'>{{ $flow1->plate_in }}</td>
                                             <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_in)) }}</td>
