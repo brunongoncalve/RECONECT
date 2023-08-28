@@ -150,6 +150,12 @@
                                             <td align='left'>{{ $flow1->plate_out }}</td>
                                             <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_out)) }}</td>
                                             <td align='left'>{{ $flow1->responsible }}</td>
+                                            <td align='left'><a href="#"
+                                                                type="button"
+                                                                class="btn btn-danger" 
+                                                                onclick="">Saida
+                                                            </a>
+                                            </td>
                                         </tr>  
                                     @endforeach
                                 </tbody>
