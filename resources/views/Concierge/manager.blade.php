@@ -25,6 +25,12 @@
                         <div class="alert alert-success">
                             <p align='center'>{{session('mensagem')}}</p>
                         </div>
+                    @endif
+
+                    @if(session('mensagem1'))
+                        <div class="alert alert-success">
+                            <p align='center'>{{session('mensagem1')}}</p>
+                        </div>
                     @endif 
 
                         <div class="col-md-4 col-xs-4 pull-left" 
@@ -151,9 +157,8 @@
                                             <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_out)) }}</td>
                                             <td align='left'>{{ $flow1->responsible }}</td>
                                             <td align='left'><a href="#"
-                                                                type="button"
                                                                 class="btn btn-danger" 
-                                                                onclick="">Saida
+                                                                onclick="exit({{ $flow1->id }})">Saida
                                                             </a>
                                             </td>
                                         </tr>  
@@ -247,6 +252,16 @@ function entry(action)
     const id_vehicle = $('#id_vehicle').val();
 
     requisicao('{{route('manager')}}','POST', vehicle,plate,id,id_vehicle,action)
+    .then(result => { 
+
+}).catch(error =>{
+console.log(error);
+}); 
+}
+
+function exit(id)
+{ 
+    requisicao('{{route('manager')}}','POST', id)
     .then(result => { 
 
 }).catch(error =>{

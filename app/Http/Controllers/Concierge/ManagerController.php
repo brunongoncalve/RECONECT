@@ -76,6 +76,22 @@ class ManagerController extends Controller
         return redirect()->route('manager');
     }
 
+    public function saveExit(Request $request)
+    {
+        DB::transction(function() use ($request) {
+            if($request->param1 == TRUE) {
+                DB::table('port001')
+                    ->where('id', $request->param1)
+                    ->update(['status' => 1]);          
+
+                    Session::flash('mensagem1', 'Saida realizada com sucesso.');
+                    return redirect()->route('manager');
+            }
+        });
+
+        return redirect()->route('manager');
+    }
+
     public function flow(Request $request)
     {
         $flow = EntryExitVehicle::where('status', 2)->get();

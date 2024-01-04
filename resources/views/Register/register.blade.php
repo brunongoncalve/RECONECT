@@ -16,72 +16,66 @@
     
 </head>
 
-<body class="gray-bg" style="position: relative;">
-    
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
+<body class="gray-bg" style="position: relative;"> 
+    <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
-            <h1 class="logo-name">BT</h1>   
-        </div>
+            <div>
+                <h1 class="logo-name">BT</h1>   
+            </div>
 
-<h4 class="h1-registro">Registre-se em nosso portal.</h4>
-    <form class="m-t" 
-          action="{{ route('register') }}"
-          enctype="multpart/form-data"
-          method="POST">
-        @csrf
+                <h4 class="h1-registro">Registre-se em nosso portal.</h4>
+                    <form class="m-t" 
+                          action="{{ route('register') }}"
+                          enctype="multpart/form-data"
+                          method="POST">
+                        @csrf
             
-@if(session('mensagem'))
-    <div class="alert alert-success">
-        <p align='center'>{{session('mensagem')}}</p>
-    </div>
-@endif 
+                        @if(session('mensagem'))
+                            <div class="alert alert-success">
+                                <p align='center'>{{session('mensagem')}}</p>
+                            </div>
+                        @endif 
    
-<div class="form-group">
-    <input type="text" 
-            class="form-control" 
-            placeholder="Informe seu primeiro nome..."
-            id="name"
-            name="name"
-            value="{{ old('name') }}" 
-            required>
-</div>
-            
-<div class="form-group">
-    <input type="email" 
-           class="form-control" 
-           placeholder="Informe seu email..." 
-           type="email"
-           id="email"
-           name="email"
-           value="{{ old('email') }}"
-           required>
-</div>
-            
-<div class="form-group">
-    <input type="password" 
-           class="form-control" 
-           placeholder="********" 
-           id="password"
-           name="password"
-           required>
-</div>
-
-      
-<button type="submit" 
-        class="btn btn-primary block full-width m-b">Salve seu Cadastro
-</button>
-        
-<a href="{{ route('login') }}"
-   type="submit" 
-   class="btn btn-success block full-width m-b">Realize seu Login
-</a>
+                        <div class="form-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   placeholder="Informe seu primeiro nome..."
+                                   id="name"
+                                   name="name"
+                                   value="{{ old('name') }}" 
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" 
+                                   class="form-control" 
+                                   placeholder="Informe seu email..." 
+                                   type="email"
+                                   id="email"
+                                   name="email"
+                                   value="{{ old('email') }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" 
+                                   class="form-control" 
+                                   placeholder="********" 
+                                   id="password"
+                                   name="password"
+                                   required>
+                        </div>
+                        <button type="submit" 
+                                class="btn btn-primary block full-width m-b">Salve seu Cadastro
+                        </button>
+                        <a href="{{ route('login') }}"
+                           type="submit" 
+                           class="btn btn-success block full-width m-b">Realize seu Login
+                        </a>
     
-</form>
+                    </form>
 
-<p class="m-t"> <small>Reconect Company &copy; 2022</small></p>
+                    <p class="m-t"> <small>Reconect Company &copy; 2022</small></p>
 
-</div>
+    </div>
 </div>
 
 <script src="js/jquery-3.1.1.min.js"></script>

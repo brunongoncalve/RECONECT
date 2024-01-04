@@ -20,9 +20,9 @@ class RegistrationVehicleController extends Controller
         DB::transaction(function() use ($request) {
             $vehicle = new Vehicle;
 
-            $vehicle->name_car         = $request->name_car;
-            $vehicle->plate            = $request->plate;
-            $vehicle->status           = 1;
+            $vehicle->name_car = $request->name_car;
+            $vehicle->plate    = $request->plate;
+            $vehicle->status   = 1;
             if($request->hasFile('photo') && $request->file('photo')->isValid()) {
                 $photo = $request->photo;
                 $photoName = uniqid() . '.jpeg';

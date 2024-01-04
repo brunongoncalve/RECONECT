@@ -1,6 +1,6 @@
 @extends('Template.main')
 
-@section('title', 'INTEGRA')
+@section('title', 'Reconect | Editar Perfil')
 
 @section('content')
 

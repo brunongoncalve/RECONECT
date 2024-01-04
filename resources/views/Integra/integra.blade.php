@@ -1,6 +1,6 @@
 @extends('Template.main')
 
-@section('title', 'INTEGRA')
+@section('title', 'Reconect | Integra')
 
 @section('content')
 
@@ -17,7 +17,7 @@
 <div class="container">
     <div class="ibox">
         <div class="ibox-content" align="center">
-            <h3 class="m-b-xxs">Social Feed</h3>
+            <h3 class="m-b-xxs">Reconect Feed</h3>
                 <small>Entreterimento</small>
         </div>
     </div>

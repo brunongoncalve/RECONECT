@@ -73,6 +73,7 @@ Route::controller(ManagerController::class)->group(function() {
     Route::get('/load_vehicle', 'loadVehicle')->name('load_vehicle')->middleware(Seguranca::class);
     Route::get('/select_vehicle', 'selectVehicle')->name('select_vehicle')->middleware(Seguranca::class);
     Route::post('/manager', 'saveEntry')->name('manager')->middleware(Seguranca::class);
+    Route::post('/manager', 'saveExit')->name('manager')->middleware(Seguranca::class);
     Route::get('/manager', 'flow')->name('manager')->middleware(Seguranca::class);
 });
 
