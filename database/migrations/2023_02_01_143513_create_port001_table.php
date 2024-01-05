@@ -16,6 +16,7 @@ class CreatePort001Table extends Migration
         Schema::create('port001', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('users_id')->constrained();
+            $table->integer('port002_id')->nullable();
             $table->string('car_in')->nullable();
             $table->string('plate_in')->nullable();
             $table->date('date_in')->nullable();

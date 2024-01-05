@@ -112,14 +112,14 @@
                                            id="btn_clean"
                                            name="btn_clean">&nbsp;Limpar&nbsp;
                                         </a>
-                                        <button type="button" 
+                                        <a href="{{ route('manager') }}"
                                                 class="btn btn-primary" 
                                                 onclick="entry('ENTRY')" 
                                                 style="display: none" 
                                                 name="btn_entry" 
                                                 id="btn_entry" 
                                                 value="ENTRY">&nbsp;Entrar&nbsp;
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                 </form>
@@ -156,9 +156,9 @@
                                             <td align='left'>{{ $flow1->plate_out }}</td>
                                             <td align='left'>{{ date('d/m/y H:i:s', strtotime($flow1->date_out)) }}</td>
                                             <td align='left'>{{ $flow1->responsible }}</td>
-                                            <td align='left'><a href="#"
+                                            <td align='left'><a href="{{ route('manager') }}"
                                                                 class="btn btn-danger" 
-                                                                onclick="exit({{ $flow1->id }})">Saida
+                                                                onclick="exit('{{ $flow1->id }}', '{{ $flow1->port002_id }}', '{{ $flow1->plate_in }}')">&nbsp;Saida&nbsp;
                                                             </a>
                                             </td>
                                         </tr>  
@@ -259,9 +259,9 @@ console.log(error);
 }); 
 }
 
-function exit(id)
+function exit(id,id_vehicle,plate_in)
 { 
-    requisicao('{{route('manager')}}','POST', id)
+    requisicao('{{route('saveExit')}}','POST', id,id_vehicle,plate_in)
     .then(result => { 
 
 }).catch(error =>{
