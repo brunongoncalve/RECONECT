@@ -68,9 +68,6 @@ class ManagerController extends Controller
                     }
 
                     $saveEntryExit->save();
-
-                    Session::flash('mensagem', 'Entrada realizada com sucesso.');
-                    return redirect()->route('manager');
                 }
         });
 
@@ -91,13 +88,11 @@ class ManagerController extends Controller
                     
                 DB::table('port002')
                     ->where('id', $request->param2)
-                    ->update(['status' => 1]);    
-
-                    Session::flash('mensagem1', 'Saida realizada com sucesso.');
-                    return redirect()->route('manager');
+                    ->update(['status' => 1]);
             }
         });
 
+        Session::flash('mensagem1', 'Saida realizada com sucesso.');
         return redirect()->route('manager');
     }
 
