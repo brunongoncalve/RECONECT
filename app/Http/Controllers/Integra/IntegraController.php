@@ -33,7 +33,6 @@ class IntegraController extends Controller
         DB::transaction(function() use ($request) {
             if($request->btn_save_post == 'btn_save_post') {
                 $post = new Post;
-
                 $post->users_id = auth()->user()->id;
                 if($request->hasFile('message') && $request->file('message')->isValid()) {
                     $photo = $request->message;
@@ -61,8 +60,8 @@ class IntegraController extends Controller
                 if($request->param1 == TRUE) {
                     if($count == 0) {
                         $like = new Like;
-                        $like->users_id      = auth()->user()->id;
-                        $like->rep001s_id    = $request->param1;
+                        $like->users_id   = auth()->user()->id;
+                        $like->rep001s_id = $request->param1;
                         $like->save();
                     } elseif($count == 1) {
                         DB::table('rep003s')
@@ -107,10 +106,10 @@ class IntegraController extends Controller
         DB::transaction(function() use ($request) {
             if($request->param1 == TRUE) {
                 $comment = new Comment;
-                $comment->rep001s_id       = $request->param1;
-                $comment->users_id         = auth()->user()->id;
-                $comment->comment          = $request->param2;
-                $comment->date_comment     = date('Y-m-d H:i:s');
+                $comment->rep001s_id   = $request->param1;
+                $comment->users_id     = auth()->user()->id;
+                $comment->comment      = $request->param2;
+                $comment->date_comment = date('Y-m-d H:i:s');
                 $comment->save();
             }
         });

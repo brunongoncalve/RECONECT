@@ -19,7 +19,6 @@ class RegistrationVehicleController extends Controller
     {
         DB::transaction(function() use ($request) {
             $vehicle = new Vehicle;
-
             $vehicle->name_car = $request->name_car;
             $vehicle->plate    = $request->plate;
             $vehicle->status   = 1;

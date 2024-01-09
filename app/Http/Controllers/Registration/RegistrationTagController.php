@@ -19,7 +19,6 @@ class RegistrationTagController extends Controller
     {
         DB::transaction(function() use ($request) {
             $group = new Tag;
-
             $group->users_id         = auth()->user()->id;
             $group->tag_name         = $request->tag_name;
             $group->save();

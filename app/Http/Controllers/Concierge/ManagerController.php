@@ -49,7 +49,6 @@ class ManagerController extends Controller
             if($request->param1)
                 if($request->param5 == 'ENTRY') {
                     $saveEntryExit = new EntryExitVehicle;
-
                     $saveEntryExit->users_id    = $request->param3;
                     $saveEntryExit->port002_id  = $request->param4;
                     $saveEntryExit->car_in      = $request->param1;
